@@ -3,4 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="transparent">#000000</color>
+    <color name="color_bg_selected">#E8E3E3</color>
+    <color name="color_bg_normal">#e7e7e8</color>
+    <color name="color_text_selected">#FFFFFF</color>
+    <color name="color_text_normal">#000000</color>
+    <array name="color_list_bake">#CCCCCC</array>
 </resources>

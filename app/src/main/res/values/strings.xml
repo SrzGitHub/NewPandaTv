@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">NewPandaTv</string>
+    <string name="app_name">熊猫频道</string>
+    <string name="zhibo">熊猫直播</string>
+    <string name="gungun">滚滚视频</string>
+    <string name="bobao">熊猫播报</string>
+    <string name="zhongguo">直播中国</string>
 </resources>
