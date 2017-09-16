@@ -16,9 +16,8 @@ import co.com.newpandatv.base.BaseActivity;
 public class App extends Application {
 
     public static BaseActivity context = null;
-<<<<<<< HEAD
 
-=======
+
     public static Context mContext;
     public static int PAGER =1;
 
@@ -41,5 +40,5 @@ public class App extends Application {
     public static Context getContext(){
         return context;
     }
->>>>>>> origin/master
+
 }

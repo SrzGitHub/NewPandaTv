@@ -1,11 +1,13 @@
 package co.com.newpandatv.view.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.google.gson.Gson;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.youth.banner.loader.ImageLoader;
 
 import java.io.IOException;
 import java.util.List;
@@ -65,12 +67,13 @@ public class Billow_moveActivity extends BaseActivity {
             }
         });
 
-        //获取ImageLoader对象
+        /*//获取ImageLoader对象
         ImageLoader imageloader = ImageLoader.getInstance();
+
         //使用默认的ImageLoaderConfiguration
         ImageLoaderConfiguration configuration = ImageLoaderConfiguration.createDefault(this.getApplicationContext());
         //初始化ImageLoader的配置
-        imageloader.init(configuration);
+        imageloader.init(configuration);*/
 
         mVideoview.setUp(url,title);
     }

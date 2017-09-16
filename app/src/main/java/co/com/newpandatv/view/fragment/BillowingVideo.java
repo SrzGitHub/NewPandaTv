@@ -47,6 +47,8 @@ public class BillowingVideo extends BaseFragment implements BilowingVideoContrac
     BilowingVideoContract.Presenter presenter;
     private ImageView addImg;
     private TextView addTitle;
+    private String pid;
+    private String image;
 
     @Override
     protected int getLayoutId() {
@@ -90,10 +92,9 @@ public class BillowingVideo extends BaseFragment implements BilowingVideoContrac
     public void setResult(BillowingVideoBean billowing) {
         mList.addAll(billowing.getList());
 
-        final String pid = billowing.getBigImg().get(0).getPid();
-
-        final String image = billowing.getBigImg().get(0).getImage();
-        Glide.with(App.context).load(image).into(addImg);
+        pid = billowing.getBigImg().get(0).getPid();
+        image = billowing.getBigImg().get(0).getImage();
+        Glide.with(App.context).load(image).fitCenter().into(addImg);
         addTitle.setText(billowing.getBigImg().get(0).getTitle());
 
         //一张图片的
@@ -102,12 +103,12 @@ public class BillowingVideo extends BaseFragment implements BilowingVideoContrac
             public void onClick(View view) {
 
                 Intent intent = new Intent(App.context, Billow_moveActivity.class);
-                intent.putExtra("pid",pid);
+                intent.putExtra("pid", pid);
                 startActivity(intent);
             }
         });
 
-        billowingAdapter = new BillowingAdapter(App.context,R.layout.billow_item,mList);
+        billowingAdapter = new BillowingAdapter(App.getContext(),R.layout.billow_item,mList);
         billowListView.setAdapter(billowingAdapter);
         billowListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
