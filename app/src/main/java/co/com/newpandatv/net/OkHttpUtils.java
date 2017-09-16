@@ -2,6 +2,7 @@ package co.com.newpandatv.net;
 
 import com.google.gson.Gson;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -10,6 +11,7 @@ import java.util.Set;
 
 import co.com.newpandatv.app.App;
 import co.com.newpandatv.net.callback.MyNetWorkCallback;
+import okhttp3.Cache;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -23,10 +25,11 @@ import okhttp3.Response;
 
 public class OkHttpUtils implements IHttp {
 
+
     private OkHttpClient okHttpClient;
     //构造函数私有化
     private OkHttpUtils(){
-        okHttpClient = new OkHttpClient.Builder().build();
+        okHttpClient = new OkHttpClient.Builder().cache(new Cache(new File(App.context.getExternalCacheDir(), "panda"), 10 * 1024 * 1024)).build();
     }
 
     private static OkHttpUtils okHttpUtils;

@@ -25,10 +25,12 @@ public class SuperMOEshowPresenter implements SuperMOEshowContract.SuperPresnter
 
     @Override
     public void start() {
+        superMOEshowContractView.showProgressDialog();
         superMOEshowModel.getSuperMOEshow(new MyNetWorkCallback<SuperMOEshowBean>() {
             @Override
             public void onSuccess(SuperMOEshowBean superMOEshowBean) {
                 superMOEshowContractView.setResult(superMOEshowBean);
+                superMOEshowContractView.dismissDialog();
             }
 
             @Override

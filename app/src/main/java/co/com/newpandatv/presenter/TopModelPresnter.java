@@ -27,10 +27,12 @@ public class TopModelPresnter implements TopContract.TopPresnter {
     }
     @Override
     public void start() {
+        topContractView.showProgressDialog();
         topModel.getTopModel(new MyNetWorkCallback<TopBean>() {
             @Override
             public void onSuccess(TopBean topBean) {
                 topContractView.setResult(topBean);
+                topContractView.dismissDialog();
             }
 
             @Override

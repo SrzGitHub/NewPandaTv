@@ -12,6 +12,11 @@ import co.com.newpandatv.R;
 import co.com.newpandatv.app.App;
 import co.com.newpandatv.model.entity.SuperMOEshowBean;
 
+import static co.com.newpandatv.R.id.pandaLiveDate;
+import static co.com.newpandatv.R.id.pandaLiveImg;
+import static co.com.newpandatv.R.id.pandaLiveLen;
+import static co.com.newpandatv.R.id.pandaLiveTitle;
+
 /**
  * Created by Administrator on 2017/9/13.
  * 作者：大姨夫
@@ -27,16 +32,16 @@ public class SuperMOEshowAdapter extends AbsAdapter<SuperMOEshowBean.VideoBean> 
 
     @Override
     public void bindResponse(ViewHolder holder, SuperMOEshowBean.VideoBean data) {
-        ImageView pandaLiveImg = (ImageView) holder.getView(R.id.pandaLiveImg);
-        TextView pandaLiveTitle = (TextView) holder.getView(R.id.pandaLiveTitle);
-        TextView pandaLiveDate = (TextView) holder.getView(R.id.pandaLiveDate);
-        TextView pandaLiveLen = (TextView) holder.getView(R.id.pandaLiveLen);
+        ImageView showImg = (ImageView) holder.getView(pandaLiveImg);
+        TextView showTitle = (TextView) holder.getView(pandaLiveTitle);
+        TextView showDate = (TextView) holder.getView(pandaLiveDate);
+        TextView showLen = (TextView) holder.getView(pandaLiveLen);
 
 
-        Glide.with(App.context).load(data.getImg()).into(pandaLiveImg);
-        pandaLiveTitle.setText(data.getT());
-        pandaLiveDate.setText(data.getPtime());
-        pandaLiveLen.setText(data.getLen());
+        Glide.with(App.getContext()).load(data.getImg()).fitCenter().into(showImg);
+        showTitle.setText(data.getT());
+        showDate.setText(data.getPtime());
+        showLen.setText(data.getLen());
 
     }
 }

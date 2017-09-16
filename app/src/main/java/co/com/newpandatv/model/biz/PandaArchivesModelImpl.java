@@ -1,5 +1,6 @@
 package co.com.newpandatv.model.biz;
 
+import co.com.newpandatv.app.App;
 import co.com.newpandatv.config.UrlsUtils;
 import co.com.newpandatv.model.entity.PandaArchivesBean;
 import co.com.newpandatv.net.callback.MyNetWorkCallback;
@@ -14,6 +15,6 @@ import co.com.newpandatv.net.callback.MyNetWorkCallback;
 public class PandaArchivesModelImpl implements PandaArchivesModel {
     @Override
     public void getPandaArchivesModel(MyNetWorkCallback<PandaArchivesBean> callback) {
-        iHttp.get(UrlsUtils.PANDAFILE,null,callback);
+        iHttp.get(UrlsUtils.PANDAFILE+ App.PAGER,null,callback);
     }
 }

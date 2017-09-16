@@ -1,14 +1,14 @@
 package co.com.newpandatv.view.fragment.pandalive_fragment;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.AdapterView;
 import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,15 +17,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import co.com.newpandatv.R;
-import co.com.newpandatv.adapter.AbsAdapter;
 import co.com.newpandatv.adapter.TopAdapter;
 import co.com.newpandatv.app.App;
 import co.com.newpandatv.base.BaseFragment;
 import co.com.newpandatv.model.entity.TopBean;
 import co.com.newpandatv.module.home.contract.TopContract;
+import co.com.newpandatv.view.activity.VideoActivity;
 import co.com.newpandatv.view.listview.MyListView;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
+import in.srain.cube.views.ptr.PtrClassicDefaultFooter;
+import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
+import in.srain.cube.views.ptr.PtrDefaultHandler2;
+import in.srain.cube.views.ptr.PtrFrameLayout;
 
 /**
  * Created by Administrator on 2017/9/12.
@@ -42,6 +44,8 @@ public class Panda_Top_List extends BaseFragment implements TopContract.View {
     Unbinder unbinder;
     List<TopBean.VideoBean> topList = new ArrayList<>();
     TopAdapter topAdapter;
+    @BindView(R.id.pandaPfl)
+    PtrFrameLayout pandaPfl;
 
 
     @Override
@@ -57,8 +61,37 @@ public class Panda_Top_List extends BaseFragment implements TopContract.View {
     @Override
     protected void loadData() {
         topPresnter.start();
+        initDate();
     }
+    private void initDate() {
+        PtrClassicDefaultHeader header = new PtrClassicDefaultHeader(App.context);
+        PtrClassicDefaultFooter footer = new PtrClassicDefaultFooter(App.context);
 
+        pandaPfl.addPtrUIHandler(header);
+        pandaPfl.addPtrUIHandler(footer);
+
+        pandaPfl.setHeaderView(header);
+        pandaPfl.setFooterView(footer);
+        pandaPfl.setPtrHandler(new PtrDefaultHandler2() {
+            @Override
+            public void onLoadMoreBegin(PtrFrameLayout frame) {
+                Log.e("TAG", "onLoadMoreBegin:开始 加载更多");
+                App.PAGER++;
+                topPresnter.start();
+                pandaPfl.refreshComplete();
+            }
+
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                Log.e("TAG", "onLoadMoreBegin: 开始加载");
+                App.PAGER = 1;
+                topList.clear();
+                topPresnter.start();
+                pandaPfl.refreshComplete();
+            }
+        });
+
+    }
     @Override
     public void setPresenter(TopContract.TopPresnter topPresnter) {
         this.topPresnter = topPresnter;
@@ -67,26 +100,34 @@ public class Panda_Top_List extends BaseFragment implements TopContract.View {
 
     @Override
     public void showProgressDialog() {
-
     }
 
     @Override
     public void dismissDialog() {
-
     }
 
     @Override
     public void setResult(TopBean topBean) {
         topList.addAll(topBean.getVideo());
-        topAdapter = new TopAdapter(App.context,R.layout.pandalive_list_item,topList);
-        pandaLiveListView.setAdapter(topAdapter);
 
+
+        topAdapter = new TopAdapter(App.getContext(), R.layout.pandalive_list_item, topList);
+        pandaLiveListView.setAdapter(topAdapter);
+        pandaLiveListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(App.context, VideoActivity.class);
+                intent.putExtra("vid", topList.get(i).getVid());
+                intent.putExtra("title", topList.get(i).getT());
+                startActivity(intent);
+            }
+        });
 
     }
 
     @Override
     public void showMessage(String msg) {
-        Toast.makeText(App.context,msg,Toast.LENGTH_SHORT).show();
+        Toast.makeText(App.context, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package co.com.newpandatv.model.biz;
 
+import co.com.newpandatv.app.App;
 import co.com.newpandatv.config.UrlsUtils;
 import co.com.newpandatv.model.entity.SuperMOEshowBean;
 import co.com.newpandatv.net.callback.MyNetWorkCallback;
@@ -17,6 +18,6 @@ public class SuperMOEshowModelImpl implements SuperMOEshowModel {
 
     @Override
     public void getSuperMOEshow(MyNetWorkCallback<SuperMOEshowBean> callback) {
-        iHttp.get(UrlsUtils.ROLL,null,callback);
+        iHttp.get(UrlsUtils.ROLL+ App.PAGER,null,callback);
     }
 }

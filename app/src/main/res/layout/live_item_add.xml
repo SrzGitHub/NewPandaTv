@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_marginTop="1dp"
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/zkName"
+            android:text="1151515"
+            android:textColor="#000"
+            android:background="@color/color_text_selected"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="1dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/but1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_text_selected"
+            android:layout_weight="1"
+            android:text="多视角直播"/>
+        <Button
+            android:id="@+id/but2"
+            android:layout_width="match_parent"
+            android:background="@color/color_text_selected"
+
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="边看边聊"/>
+    </LinearLayout>
+    <FrameLayout
+        android:layout_marginTop="1dp"
+        android:id="@+id/addFragMent"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </FrameLayout>
+
+</LinearLayout>

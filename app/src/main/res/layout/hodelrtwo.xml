@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:id="@+id/twoImg"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"
+
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:src="@mipmap/default_time_view"
+            android:layout_alignBottom="@+id/twoImg"
+            android:layout_alignLeft="@+id/twoImg"
+            android:layout_alignStart="@+id/twoImg"
+            android:id="@+id/imageView" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:src="@mipmap/lpanda_live_layer"
+            android:layout_alignBottom="@+id/twoImg"
+            android:layout_alignLeft="@+id/twoImg"
+            android:layout_alignStart="@+id/twoImg"
+            android:layout_alignTop="@+id/imageView"
+            android:id="@+id/imageView2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Live"
+            android:textColor="@color/biz_audio_progress_first"
+            android:layout_alignBottom="@+id/twoImg"
+            android:layout_toRightOf="@+id/twoImg"
+            android:layout_toEndOf="@+id/imageView2" />
+
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/twoTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="12121212"
+        android:textSize="12sp"
+        android:textColor="#000"/>
+
+</LinearLayout>

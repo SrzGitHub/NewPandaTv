@@ -1,5 +1,6 @@
 package co.com.newpandatv.model.biz;
 
+import co.com.newpandatv.app.App;
 import co.com.newpandatv.config.UrlsUtils;
 import co.com.newpandatv.model.entity.TopBean;
 import co.com.newpandatv.net.callback.MyNetWorkCallback;
@@ -17,6 +18,6 @@ public class TopModelImpl implements TopModel {
 
     @Override
     public void getTopModel(MyNetWorkCallback<TopBean> callback) {
-        iHttp.get(UrlsUtils.TOP,null,callback);
+        iHttp.get(UrlsUtils.TOP+ App.PAGER,null,callback);
     }
 }

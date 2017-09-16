@@ -88,7 +88,7 @@
                 android:button="@null"
                 android:checked="false"
                 android:background="@drawable/radio_group_selector"
-                android:drawableTop="@mipmap/tab_panda_eye_normal"
+                android:drawableTop="@mipmap/tab_panda_live_normal"
                 android:gravity="center"
                 android:text="熊猫直播"/>
 
