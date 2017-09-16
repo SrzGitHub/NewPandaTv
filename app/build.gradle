@@ -25,6 +25,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
+
+
+    compile 'fm.jiecao:jiecaovideoplayer:2.0'
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.squareup.okhttp3:okhttp:3.8.1'
@@ -33,7 +36,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.7.0'
     compile 'com.jakewharton:butterknife-compiler:8.7.0'
     compile 'com.youth.banner:banner:1.4.9'
-    compile 'com.android.support:design:25.1.0'
+    compile 'com.android.support:design:26.+'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
@@ -49,6 +52,9 @@ dependencies {
     compile 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
     compile 'fm.jiecao:jiecaovideoplayer:2.0'
     compile 'com.zhy:autolayout:1.4.3'
+    compile 'com.android.support:support-v4:26.+'
+    compile 'com.github.userswlwork:pull-to-refresh:1.0.0'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
 }

@@ -28,6 +28,7 @@ import butterknife.OnClick;
 import co.com.newpandatv.R;
 import co.com.newpandatv.app.App;
 import co.com.newpandatv.base.BaseActivity;
+import co.com.newpandatv.module.bilowing.BillowingVideoPresenter;
 import co.com.newpandatv.module.home.HomeFragment;
 import co.com.newpandatv.module.home.HomePresenter;
 import co.com.newpandatv.view.fragment.BillowingVideo;
@@ -168,6 +169,8 @@ public class TwoActivity extends BaseActivity {
                     if (homeFragment == null) {
 
                         homeFragment = new HomeFragment();
+
+
                         transaction.add(R.id.content, homeFragment, "HomeFragment");
 
                     } else {
@@ -199,6 +202,7 @@ public class TwoActivity extends BaseActivity {
                     if (billowingVideo == null) {
 
                         billowingVideo = new BillowingVideo();
+                        new BillowingVideoPresenter(billowingVideo);
                         transaction.add(R.id.content, billowingVideo);
 
                     } else {

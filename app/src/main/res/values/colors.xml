@@ -10,4 +10,14 @@
     <color name="color_text_selected">#FFFFFF</color>
     <color name="color_text_normal">#000000</color>
     <array name="color_list_bake">#CCCCCC</array>
+
+    <color name="gray_8f">#8f8f8f</color>
+    <!--灰色8f -->
+
+    <color name="touming">#00000000</color>
+    <!--透明色 -->
+
+    <color name="lavender">#E6E6FA</color>
+    <!--淡紫色 -->
+
 </resources>

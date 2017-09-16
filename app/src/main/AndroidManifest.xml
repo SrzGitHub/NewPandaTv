@@ -39,7 +39,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.activity.TwoActivity" />
-        <activity android:name=".view.activity.VideoActivity"></activity>
+        <activity android:name=".view.activity.VideoActivity" />
+        <activity android:name=".view.activity.BillowingbottomActivity" />
+        <activity
+            android:name=".view.activity.Billow_moveActivity"></activity>
     </application>
 
 </manifest>

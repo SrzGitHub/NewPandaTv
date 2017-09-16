@@ -12,4 +12,5 @@ import co.com.newpandatv.base.BaseActivity;
 public class App extends Application {
 
     public static BaseActivity context = null;
+
 }

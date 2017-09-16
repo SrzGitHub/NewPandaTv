@@ -42,7 +42,7 @@ public class UrlsUtils {
 
 
     //邮箱注册
-    public static final String EMAILREGISTER = "https://reg.cntv.cn/api/register.action";
+    public static final String EMAILREGIST20ER = "https://reg.cntv.cn/api/register.action";
     //熊猫播报
     public static final String BROAD = "http://www.ipanda.com/kehuduan/news/index.json";
     //滚滚视频

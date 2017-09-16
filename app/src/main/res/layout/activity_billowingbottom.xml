@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/lavender"
+    tools:context="co.com.newpandatv.view.activity.BillowingbottomActivity">
+<fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
+    android:layout_width="match_parent"
+    android:layout_height="200dp">
+
+</fm.jiecao.jcvideoplayer_lib.JCVideoPlayer>
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:background="@color/color_text_selected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="首播时间"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="17dp">
+        <TextView
+            android:background="@color/color_text_selected"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="栏目介绍"/>
+
+        <ImageView
+            android:id="@+id/butImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity=""
+            android:src="@mipmap/ic_launcher" />
+    </RelativeLayout>
+<TextView
+    android:id="@+id/textName"
+    android:text="dsfdsfsdf"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/color_text_selected"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:text="高清完整"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+
+    </RelativeLayout>
+
+    <co.com.newpandatv.view.listview.MyListView
+        android:id="@+id/mBillowing_bottom_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></co.com.newpandatv.view.listview.MyListView>
+
+
+
+
+    <LinearLayout
+        android:gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/color_text_selected">
+        <Button
+            android:id="@+id/mShoucang"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="收藏"/>
+        <Button
+            android:id="@+id/mFenxiang"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="分享"/>
+
+    </LinearLayout>
+
+</LinearLayout>
