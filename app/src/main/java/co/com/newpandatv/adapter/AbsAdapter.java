@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import co.com.newpandatv.app.App;
+
 public abstract class AbsAdapter<T> extends BaseAdapter {
 	private List<T> datas;
 	private Context context;
@@ -51,7 +53,7 @@ public abstract class AbsAdapter<T> extends BaseAdapter {
 
 		if (convertView == null) {
 
-			convertView = LayoutInflater.from(context).inflate(layoutId, null);
+			convertView = LayoutInflater.from(App.getContext()).inflate(layoutId, null);
 			holder = new ViewHolder(convertView);
 
 			convertView.setTag(holder);

@@ -1,10 +1,13 @@
 package co.com.newpandatv.view.fragment.pandalive_fragment;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -19,7 +22,15 @@ import co.com.newpandatv.app.App;
 import co.com.newpandatv.base.BaseFragment;
 import co.com.newpandatv.model.entity.WonderfuMomentBean;
 import co.com.newpandatv.module.home.contract.WonderfulMomentContract;
+import co.com.newpandatv.view.activity.VideoActivity;
 import co.com.newpandatv.view.listview.MyListView;
+import in.srain.cube.views.ptr.PtrClassicDefaultFooter;
+import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
+import in.srain.cube.views.ptr.PtrDefaultHandler2;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+
+import static android.R.id.list;
+
 /**
  * Created by Administrator on 2017/9/12.
  * 作者：大姨夫
@@ -33,10 +44,14 @@ public class WonderfulMoment extends BaseFragment implements WonderfulMomentCont
     @BindView(R.id.pandaLiveListView)
     MyListView pandaLiveListView;
     Unbinder unbinder;
-     WonderfulMomentContract.WonderPresenter presenter;
-     List<WonderfuMomentBean.VideoBean> pandaLiveList;
+    WonderfulMomentContract.WonderPresenter presenter;
+    List<WonderfuMomentBean.VideoBean> pandaLiveList;
     WonderFuAdapter wonderFuAdapter;
 
+//    public static int PAGR = 1;
+    @BindView(R.id.pandaPfl)
+    PtrFrameLayout pandaPfl;
+    private ProgressDialog dialog;
 
     @Override
     protected int getLayoutId() {
@@ -51,8 +66,55 @@ public class WonderfulMoment extends BaseFragment implements WonderfulMomentCont
 
     @Override
     protected void loadData() {
-        pandaLiveList=new ArrayList<>();
+        pandaLiveList = new ArrayList<>();
+
+        dialog = new ProgressDialog(App.context);
+        dialog.setMessage("正在加载");
+
+
         presenter.start();
+        initDate();
+    }
+
+    private void initDate() {
+        PtrClassicDefaultHeader header = new PtrClassicDefaultHeader(App.context);
+        PtrClassicDefaultFooter footer = new PtrClassicDefaultFooter(App.context);
+
+        pandaPfl.addPtrUIHandler(header);
+        pandaPfl.addPtrUIHandler(footer);
+
+        pandaPfl.setHeaderView(header);
+        pandaPfl.setFooterView(footer);
+        pandaPfl.setPtrHandler(new PtrDefaultHandler2() {
+            @Override
+            public void onLoadMoreBegin(PtrFrameLayout frame) {
+                Log.e("TAG", "onLoadMoreBegin:开始 加载更多");
+                App.PAGER++;
+                Log.e("TAG", "onLoadMoreBegin: "+App.PAGER);
+                presenter.start();
+                pandaPfl.refreshComplete();
+            }
+
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                Log.e("TAG", "onLoadMoreBegin: 开始刷新");
+                App.PAGER = 1;
+                Log.e("TAG", "onRefreshBegin: "+App.PAGER);
+                pandaLiveList.clear();
+                presenter.start();
+                pandaPfl.refreshComplete();
+            }
+        });
+
+    }
+
+    @Override
+    protected void onShow() {
+        super.onShow();
+
+
+
+
     }
 
     @Override
@@ -64,19 +126,34 @@ public class WonderfulMoment extends BaseFragment implements WonderfulMomentCont
     @Override
     public void showProgressDialog() {
 
+        dialog.show();
+
     }
 
     @Override
     public void dismissDialog() {
-
+        dialog.dismiss();
     }
 
     @Override
     public void setResult(WonderfuMomentBean wonderfuMomentBean) {
+
+
         pandaLiveList.addAll(wonderfuMomentBean.getVideo());
-        Log.e("TAG", "setResult: "+pandaLiveList.size());
-        wonderFuAdapter = new WonderFuAdapter(App.context,R.layout.pandalive_list_item,pandaLiveList);
+        Log.e("TAG", "setResult: " + pandaLiveList.size());
+        wonderFuAdapter = new WonderFuAdapter(App.getContext(), R.layout.pandalive_list_item, pandaLiveList);
         pandaLiveListView.setAdapter(wonderFuAdapter);
+
+//        wonderfuMomentBean.getVideo()
+        pandaLiveListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(App.context, VideoActivity.class);
+                intent.putExtra("vid", pandaLiveList.get(i).getVid());
+                intent.putExtra("title", pandaLiveList.get(i).getT());
+                startActivity(intent);
+            }
+        });
 
     }
 

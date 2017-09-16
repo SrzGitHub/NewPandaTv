@@ -1,5 +1,6 @@
 package co.com.newpandatv.model.biz;
 
+import co.com.newpandatv.app.App;
 import co.com.newpandatv.config.Urls;
 import co.com.newpandatv.config.UrlsUtils;
 import co.com.newpandatv.model.entity.DonBean;
@@ -15,6 +16,6 @@ import co.com.newpandatv.net.callback.MyNetWorkCallback;
 public class DonModelImpl implements DonModel {
     @Override
     public void getDonModel(MyNetWorkCallback<DonBean> callback) {
-        iHttp.get(UrlsUtils.PANDA,null,callback);
+        iHttp.get(UrlsUtils.PANDA+ App.PAGER,null,callback);
     }
 }

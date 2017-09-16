@@ -1,9 +1,13 @@
 package co.com.newpandatv.view.fragment.pandalive_fragment;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -18,7 +22,12 @@ import co.com.newpandatv.app.App;
 import co.com.newpandatv.base.BaseFragment;
 import co.com.newpandatv.model.entity.PandaArchivesBean;
 import co.com.newpandatv.module.home.contract.PandaArchivesModeContract;
+import co.com.newpandatv.view.activity.VideoActivity;
 import co.com.newpandatv.view.listview.MyListView;
+import in.srain.cube.views.ptr.PtrClassicDefaultFooter;
+import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
+import in.srain.cube.views.ptr.PtrDefaultHandler2;
+import in.srain.cube.views.ptr.PtrFrameLayout;
 
 /**
  * Created by Administrator on 2017/9/12.
@@ -35,7 +44,9 @@ public class PandaArchives extends BaseFragment implements PandaArchivesModeCont
     MyListView pandaLiveListView;
     Unbinder unbinder;
     PandaArchivesAdapter pandaArchivesAdapter;
-
+    @BindView(R.id.pandaPfl)
+    PtrFrameLayout pandaPfl;
+    private ProgressDialog dialog;
 
 
     @Override
@@ -51,8 +62,37 @@ public class PandaArchives extends BaseFragment implements PandaArchivesModeCont
     @Override
     protected void loadData() {
         pandaArchivesPresenter.start();
+        initDate();
     }
+    private void initDate() {
+        PtrClassicDefaultHeader header = new PtrClassicDefaultHeader(App.context);
+        PtrClassicDefaultFooter footer = new PtrClassicDefaultFooter(App.context);
 
+        pandaPfl.addPtrUIHandler(header);
+        pandaPfl.addPtrUIHandler(footer);
+
+        pandaPfl.setHeaderView(header);
+        pandaPfl.setFooterView(footer);
+        pandaPfl.setPtrHandler(new PtrDefaultHandler2() {
+            @Override
+            public void onLoadMoreBegin(PtrFrameLayout frame) {
+                Log.e("TAG", "onLoadMoreBegin:开始 加载更多");
+                App.PAGER++;
+                pandaArchivesPresenter.start();
+                pandaPfl.refreshComplete();
+            }
+
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                Log.e("TAG", "onLoadMoreBegin: 开始加载");
+                App.PAGER = 1;
+                pandaArcList.clear();
+                pandaArchivesPresenter.start();
+                pandaPfl.refreshComplete();
+            }
+        });
+
+    }
     @Override
     public void setPresenter(PandaArchivesModeContract.PandaArchivesPresenter pandaArchivesPresenter) {
         this.pandaArchivesPresenter = pandaArchivesPresenter;
@@ -60,20 +100,28 @@ public class PandaArchives extends BaseFragment implements PandaArchivesModeCont
 
     @Override
     public void showProgressDialog() {
-
     }
 
     @Override
     public void dismissDialog() {
-
     }
 
     @Override
     public void setResult(PandaArchivesBean pandaArchivesBean) {
 
         pandaArcList.addAll(pandaArchivesBean.getVideo());
-        pandaArchivesAdapter= new PandaArchivesAdapter(App.context,R.layout.pandalive_list_item,pandaArcList);
+
+        pandaArchivesAdapter = new PandaArchivesAdapter(App.context, R.layout.pandalive_list_item, pandaArcList);
         pandaLiveListView.setAdapter(pandaArchivesAdapter);
+        pandaLiveListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(App.context, VideoActivity.class);
+                intent.putExtra("vid", pandaArcList.get(i).getVid());
+                intent.putExtra("title", pandaArcList.get(i).getT());
+                startActivity(intent);
+            }
+        });
 
     }
 

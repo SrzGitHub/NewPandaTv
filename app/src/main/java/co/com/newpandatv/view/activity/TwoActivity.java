@@ -82,7 +82,9 @@ public class TwoActivity extends BaseActivity {
         twoTitle.setVisibility(View.INVISIBLE);
 
         homeFragment = new HomeFragment();
+
         new HomePresenter(homeFragment);
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.add(R.id.content, homeFragment);

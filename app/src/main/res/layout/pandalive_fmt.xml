@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#CCCCCC">
     <fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
+        android:id="@+id/liveJCV"
         android:layout_width="match_parent"
         android:layout_height="200dp">
 
@@ -10,31 +12,47 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:background="@color/color_text_selected"
         android:layout_height="wrap_content">
         <TextView
+            android:background="@color/color_text_selected"
             android:id="@+id/pandaTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="  正在直播"/>
-        <LinearLayout
+            android:textSize="15sp"
+            android:textColor="#000"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="正在直播"/>
+        <RelativeLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:layout_height="wrap_content">
             <TextView
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="简介"
+                android:textSize="18sp"
+                android:background="@color/color_text_selected"
+                android:layout_marginLeft="10dp"
                />
             <ImageView
                 android:id="@+id/pandaZK"
                 android:layout_width="20dp"
-                android:layout_weight="1"
                 android:layout_height="20dp"
-                android:src="@mipmap/live_china_detail_down"/>
-        </LinearLayout>
+                android:src="@mipmap/live_china_detail_down"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+
 
     </LinearLayout>
+    <co.com.newpandatv.view.listview.MyListView
+        android:id="@+id/liveFment"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </co.com.newpandatv.view.listview.MyListView>
 
 </LinearLayout>

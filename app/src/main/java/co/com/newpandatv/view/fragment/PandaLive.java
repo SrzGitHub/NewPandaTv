@@ -19,7 +19,11 @@ import co.com.newpandatv.R;
 import co.com.newpandatv.adapter.PandaLiveAdapter;
 import co.com.newpandatv.base.BaseFragment;
 import co.com.newpandatv.presenter.DonModelPresnter;
+import co.com.newpandatv.presenter.LiveFrgmentModelPresenter;
+import co.com.newpandatv.presenter.OriginalNewsModelPresenter;
 import co.com.newpandatv.presenter.PandaArchivesModelPresenter;
+import co.com.newpandatv.presenter.PandaThoseThingsModelPresenter;
+import co.com.newpandatv.presenter.SpecialModelPresenter;
 import co.com.newpandatv.presenter.SuperMOEshowPresenter;
 import co.com.newpandatv.presenter.TopModelPresnter;
 import co.com.newpandatv.presenter.WonderfulMomentPresenter;
@@ -32,6 +36,8 @@ import co.com.newpandatv.view.fragment.pandalive_fragment.Panda_Top_List;
 import co.com.newpandatv.view.fragment.pandalive_fragment.Special;
 import co.com.newpandatv.view.fragment.pandalive_fragment.SuperMOEshow;
 import co.com.newpandatv.view.fragment.pandalive_fragment.WonderfulMoment;
+
+import static org.xutils.common.util.DensityUtil.dip2px;
 
 
 /**
@@ -87,11 +93,15 @@ public class PandaLive extends BaseFragment {
         special = new Special();
         originalNews = new OriginalNews();
 
+        new LiveFrgmentModelPresenter(liveFrgment);
         new WonderfulMomentPresenter(wonderfulMoment);
         new DonModelPresnter(dontLetTheMale);
         new SuperMOEshowPresenter(superMOEshow);
         new PandaArchivesModelPresenter(pandaArchives);
         new TopModelPresnter(panda_top_list);
+        new PandaThoseThingsModelPresenter(pandaThoseThings);
+        new SpecialModelPresenter(special);
+        new OriginalNewsModelPresenter(originalNews);
 
 
         list.add(liveFrgment);
@@ -107,20 +117,21 @@ public class PandaLive extends BaseFragment {
         pandaLiveAdapter = new PandaLiveAdapter(getFragmentManager(),list);
         pandaLiveVip.setAdapter(pandaLiveAdapter);
         pandaLiveTly.setTabMode(TabLayout.MODE_SCROLLABLE);
+
         pandaLiveTly.setupWithViewPager(pandaLiveVip);
 
-        LinearLayout linearLayout = (LinearLayout) pandaLiveTly.getChildAt(0);
+       /* LinearLayout linearLayout = (LinearLayout) pandaLiveTly.getChildAt(0);
         linearLayout.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
         linearLayout.setDividerDrawable(ContextCompat.getDrawable(getActivity(),
                 R.drawable.layout_divider_vertical));
-        linearLayout.setDividerPadding(dip2px(10)); //设置分割线间隔
+        linearLayout.setDividerPadding(dip2px(10)); //设置分割线间隔*/
 
     }
-    //像素单位转换
+   /* //像素单位转换
     public int dip2px(int dip) {
         float density = getResources().getDisplayMetrics().density;
         return (int) (dip * density + 0.5);
-    }
+    }*/
 
 
 

@@ -4,6 +4,7 @@ package co.com.newpandatv.module.home.contract;
 import co.com.newpandatv.base.BasePresenter;
 import co.com.newpandatv.base.BaseView;
 import co.com.newpandatv.model.entity.DonBean;
+import co.com.newpandatv.model.entity.PandaLiveBean;
 
 /**
  * Created by Administrator on 2017/9/13.
@@ -23,5 +24,7 @@ public interface DonModelContract {
     interface  DonPresnter extends BasePresenter{
 
     }
+
+
 
 }

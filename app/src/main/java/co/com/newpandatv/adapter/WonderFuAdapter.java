@@ -14,6 +14,11 @@ import co.com.newpandatv.R;
 import co.com.newpandatv.app.App;
 import co.com.newpandatv.model.entity.WonderfuMomentBean;
 
+import static co.com.newpandatv.R.id.pandaLiveDate;
+import static co.com.newpandatv.R.id.pandaLiveImg;
+import static co.com.newpandatv.R.id.pandaLiveLen;
+import static co.com.newpandatv.R.id.pandaLiveTitle;
+
 /**
  * Created by Administrator on 2017/9/13.
  * 作者：大姨夫
@@ -31,16 +36,16 @@ public class WonderFuAdapter extends AbsAdapter<WonderfuMomentBean.VideoBean> {
     @Override
     public void bindResponse(ViewHolder holder, WonderfuMomentBean.VideoBean data) {
 
-        ImageView pandaLiveImg = (ImageView) holder.getView(R.id.pandaLiveImg);
-        TextView pandaLiveTitle = (TextView) holder.getView(R.id.pandaLiveTitle);
-        TextView pandaLiveDate = (TextView) holder.getView(R.id.pandaLiveDate);
-        TextView pandaLiveLen = (TextView) holder.getView(R.id.pandaLiveLen);
+        ImageView derImg = (ImageView) holder.getView(pandaLiveImg);
+        TextView derTitle = (TextView) holder.getView(pandaLiveTitle);
+        TextView derDate = (TextView) holder.getView(pandaLiveDate);
+        TextView derLen = (TextView) holder.getView(pandaLiveLen);
 
 
-        Glide.with(App.context).load(data.getImg()).into(pandaLiveImg);
-        pandaLiveTitle.setText(data.getT());
-        pandaLiveDate.setText(data.getPtime());
-        pandaLiveLen.setText(data.getLen());
+        Glide.with(App.getContext()).load(data.getImg()).fitCenter().into(derImg);
+        derTitle.setText(data.getT());
+        derDate.setText(data.getPtime());
+        derLen.setText(data.getLen());
 
     }
 
