@@ -139,7 +139,7 @@ public class VideoActivity extends AppCompatActivity implements VideoActivityMod
         sqlBeansDao.insert(sqlBeans);
 
         Log.e("TAG", "setResult: " + urls);
-        videoJP.setUp(urls, title);
+        videoJP.setUp(urls,title);
 
         shareImg.setOnClickListener(new View.OnClickListener() {
             @Override

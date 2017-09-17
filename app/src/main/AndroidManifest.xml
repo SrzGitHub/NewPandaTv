@@ -81,6 +81,12 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".view.activity.SQLActivity" />
         <activity android:name=".view.activity.SetUpActivity"></activity>
+
+    <activity android:name=".shaer.AutoActivity"/>
+        <activity android:name=".shaer.InfoActivity"/>
+        <activity android:name=".shaer.UserActivity"/>
+
+
     </application>
 
 </manifest>
