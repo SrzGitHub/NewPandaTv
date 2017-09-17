@@ -119,6 +119,9 @@ public class Panda_Top_List extends BaseFragment implements TopContract.View {
                 Intent intent = new Intent(App.context, VideoActivity.class);
                 intent.putExtra("vid", topList.get(i).getVid());
                 intent.putExtra("title", topList.get(i).getT());
+                intent.putExtra("data",topList.get(i).getPtime());
+                intent.putExtra("len",topList.get(i).getLen());
+                intent.putExtra("urlIg",topList.get(i).getImg());
                 startActivity(intent);
             }
         });

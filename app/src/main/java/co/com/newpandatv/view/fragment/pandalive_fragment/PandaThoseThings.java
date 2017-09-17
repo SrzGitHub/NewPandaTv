@@ -142,6 +142,9 @@ public class PandaThoseThings extends BaseFragment implements PandaThoseThingsMo
                 Intent intent = new Intent(App.context, VideoActivity.class);
                 intent.putExtra("vid", thoseList.get(i).getVid());
                 intent.putExtra("title", thoseList.get(i).getT());
+                intent.putExtra("data",thoseList.get(i).getPtime());
+                intent.putExtra("len",thoseList.get(i).getLen());
+                intent.putExtra("urlIg",thoseList.get(i).getImg());
                 startActivity(intent);
             }
         });

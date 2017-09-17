@@ -1,6 +1,7 @@
 package co.com.newpandatv.view.activity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -320,8 +321,12 @@ public class TwoActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.twoHD:
+                startActivity(new Intent(TwoActivity.this,InteracTionActivity.class));
+
                 break;
             case R.id.twoLonge:
+                startActivity(new Intent(TwoActivity.this,PersonalCenterActivity.class));
+
                 break;
         }
     }

@@ -133,6 +133,9 @@ public class Special extends BaseFragment implements SpecialModelContract.View {
                 Intent intent = new Intent(App.context, VideoActivity.class);
                 intent.putExtra("vid", spList.get(i).getVid());
                 intent.putExtra("title", spList.get(i).getT());
+                intent.putExtra("data",spList.get(i).getPtime());
+                intent.putExtra("len",spList.get(i).getLen());
+                intent.putExtra("urlIg",spList.get(i).getImg());
                 startActivity(intent);
             }
         });

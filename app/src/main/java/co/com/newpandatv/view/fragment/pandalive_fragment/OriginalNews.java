@@ -135,6 +135,9 @@ public class OriginalNews extends BaseFragment implements OriginalNewsModelContr
                 Intent intent = new Intent(App.context, VideoActivity.class);
                 intent.putExtra("vid", newsList.get(i).getVid());
                 intent.putExtra("title", newsList.get(i).getT());
+                intent.putExtra("data",newsList.get(i).getPtime());
+                intent.putExtra("len",newsList.get(i).getLen());
+                intent.putExtra("urlIg",newsList.get(i).getImg());
                 startActivity(intent);
             }
         });

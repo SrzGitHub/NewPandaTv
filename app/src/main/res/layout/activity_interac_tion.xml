@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="#CCCCCC"
+    tools:context="co.com.newpandatv.view.activity.InteracTionActivity">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:layout_height="45dp">
+    <ImageView
+        android:id="@+id/tion_Dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:src="@mipmap/personal_back_img"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="原创·互动"
+    android:textSize="25sp"
+    android:textColor="@color/biz_audio_progress_first"
+    android:layout_gravity="center_vertical"
+    android:gravity="center"
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
+
+
+    <in.srain.cube.views.ptr.PtrFrameLayout
+    android:id="@+id/tion_pfl"
+        android:layout_marginTop="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <co.com.newpandatv.view.listview.MyListView
+        android:id="@+id/tion_list"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:divider="#CCCCCC"
+        android:background="@color/biz_audio_progress_first"
+        android:dividerHeight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </co.com.newpandatv.view.listview.MyListView>
+
+</in.srain.cube.views.ptr.PtrFrameLayout>
+
+
+
+
+
+</LinearLayout>

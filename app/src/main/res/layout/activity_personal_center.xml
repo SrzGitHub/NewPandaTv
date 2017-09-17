@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#CCCCCC"
+    tools:context="co.com.newpandatv.view.activity.PersonalCenterActivity">
+
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:background="@color/colorPrimaryDark"
+       android:layout_height="45dp">
+      <ImageView
+          android:layout_marginLeft="5dp"
+          android:id="@+id/pr_IMG"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_vertical"
+          android:src="@mipmap/personal_back_img"
+          />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="25sp"
+          android:layout_weight="1"
+          android:text="个人中心"
+          android:textColor="@color/biz_audio_progress_first"
+          android:layout_gravity="center_vertical"
+          android:gravity="center"
+          />
+
+
+   </LinearLayout>
+
+   <LinearLayout
+       android:id="@+id/login"
+       android:layout_width="match_parent"
+       android:layout_height="60dp"
+       android:layout_marginTop="10dp"
+         android:background="@color/biz_audio_progress_first"
+       android:layout_marginLeft="10dp"
+       android:layout_marginRight="10dp">
+
+      <ImageView
+          android:id="@+id/pr_php"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:layout_marginLeft="13dp"
+          android:src="@mipmap/personal_login_head"/>
+      <TextView
+          android:id="@+id/pr_Name"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:text="点击登录"
+          android:layout_marginLeft="10dp"
+          android:gravity="center_vertical"
+
+          />
+
+   </LinearLayout>
+
+
+   <LinearLayout
+       android:id="@+id/lishi"
+       android:layout_width="match_parent"
+       android:layout_height="45dp"
+       android:layout_marginTop="6dp"
+       android:background="@color/biz_audio_progress_first"
+       android:layout_marginLeft="10dp"
+       android:layout_marginRight="10dp">
+
+      <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+
+          android:layout_marginLeft="20dp"
+          android:src="@mipmap/personal_history_img"/>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_weight="1"
+          android:layout_height="match_parent"
+          android:text="观看历史"
+          android:layout_marginLeft="10dp"
+          android:gravity="center_vertical"
+
+          />
+
+   </LinearLayout>
+
+
+   <LinearLayout
+       android:id="@+id/shoucang"
+       android:layout_width="match_parent"
+       android:layout_height="45dp"
+       android:layout_marginTop="6dp"
+       android:background="@color/biz_audio_progress_first"
+       android:layout_marginLeft="10dp"
+       android:layout_marginRight="10dp">
+
+      <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:layout_marginLeft="18dp"
+          android:src="@mipmap/collect_no"/>
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:text="我的收藏"
+          android:layout_marginLeft="10dp"
+          android:layout_weight="1"
+          android:gravity="center_vertical"
+
+          />
+
+   </LinearLayout>
+
+   <LinearLayout
+       android:id="@+id/shezhi"
+       android:layout_width="match_parent"
+       android:layout_height="45dp"
+       android:layout_marginTop="6dp"
+       android:background="@color/biz_audio_progress_first"
+       android:layout_marginLeft="10dp"
+       android:layout_marginRight="10dp">
+
+      <ImageView
+          android:layout_width="wrap_content"
+
+          android:layout_height="match_parent"
+          android:layout_marginLeft="23dp"
+          android:src="@mipmap/personal_set_img"/>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:text="设置"
+          android:layout_marginLeft="10dp"
+          android:layout_weight="1"
+          android:gravity="center_vertical"
+
+          />
+
+   </LinearLayout>
+
+
+</LinearLayout>

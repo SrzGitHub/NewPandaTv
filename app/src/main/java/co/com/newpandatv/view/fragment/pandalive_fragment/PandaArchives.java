@@ -119,6 +119,9 @@ public class PandaArchives extends BaseFragment implements PandaArchivesModeCont
                 Intent intent = new Intent(App.context, VideoActivity.class);
                 intent.putExtra("vid", pandaArcList.get(i).getVid());
                 intent.putExtra("title", pandaArcList.get(i).getT());
+                intent.putExtra("data",pandaArcList.get(i).getPtime());
+                intent.putExtra("len",pandaArcList.get(i).getLen());
+                intent.putExtra("urlIg",pandaArcList.get(i).getImg());
                 startActivity(intent);
             }
         });

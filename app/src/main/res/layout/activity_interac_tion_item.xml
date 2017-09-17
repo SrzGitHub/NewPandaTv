@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tion_Name"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:textSize="20sp"
+        android:text="03332"
+
+        android:layout_marginRight="3dp"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="5dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/biz_audio_progress_second"
+        />
+    <ImageView
+        android:layout_marginRight="3dp"
+
+        android:id="@+id/tion_Img"
+        android:layout_marginLeft="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+</LinearLayout>

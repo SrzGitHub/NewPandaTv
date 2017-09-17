@@ -2,20 +2,40 @@ package co.com.newpandatv.view.activity;
 
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.media.UMVideo;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import co.com.newpandatv.R;
+import co.com.newpandatv.app.App;
+import co.com.newpandatv.config.UMengUtls;
+import co.com.newpandatv.dao.DaoMaster;
+import co.com.newpandatv.dao.DaoSession;
+import co.com.newpandatv.dao.DaoUtil;
+import co.com.newpandatv.dao.SQLBeans;
+import co.com.newpandatv.dao.SQLBeansDao;
 import co.com.newpandatv.model.entity.VideoBeans;
 import co.com.newpandatv.module.home.contract.VideoActivityModelContract;
 import co.com.newpandatv.presenter.VideoActivityModelPresenter;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+
 
 public class VideoActivity extends AppCompatActivity implements VideoActivityModelContract.View {
 
@@ -26,13 +46,29 @@ public class VideoActivity extends AppCompatActivity implements VideoActivityMod
 
     public static String urls;
     public static String vid;
+    @BindView(R.id.collectionlImg)
+    ImageView collectionlImg;
+    @BindView(R.id.shareImg)
+    ImageView shareImg;
+    @BindView(R.id.listImg)
+    ImageView listImg;
     private String title;
+    int VIDEO =0;
+    private String data;
+    private String len;
+    private SQLiteDatabase w;
+    private DaoMaster daoMaster;
+    private DaoSession daoSession;
+    private SQLBeansDao sqlBeansDao;
+    private SQLBeans sqlBeans;
+    private String urlIg;
+    private String image;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
         setContentView(R.layout.activity_video);
@@ -41,8 +77,17 @@ public class VideoActivity extends AppCompatActivity implements VideoActivityMod
         new VideoActivityModelPresenter(this);
         vid = getIntent().getStringExtra("vid");
         title = getIntent().getStringExtra("title");
-        activityPresnter.start();
+        data = getIntent().getStringExtra("data");
+        len = getIntent().getStringExtra("len");
+        urlIg = getIntent().getStringExtra("urlIg");
+        Log.e("TAG", "onCreate: "+urlIg);
 
+        w = DaoUtil.getIn(App.getContext()).getW();
+        daoMaster = new DaoMaster(w);
+        daoSession = daoMaster.newSession();
+        sqlBeansDao = daoSession.getSQLBeansDao();
+        sqlBeans = new SQLBeans();
+        activityPresnter.start();
 
 
     }
@@ -78,16 +123,74 @@ public class VideoActivity extends AppCompatActivity implements VideoActivityMod
     }
 
     @Override
-    public void setResult(VideoBeans videoBeans) {
-
+    public void setResult(final VideoBeans videoBeans) {
         urls = videoBeans.getVideo().getChapters().get(0).getUrl();
-        Log.e("TAG", "setResult: "+urls);
-        videoJP.setUp(urls,title,true);
+        image = videoBeans.getVideo().getChapters().get(0).getImage();
+        Log.e("TAG", "setResult: image："+ image);
+        Date date=new Date();
+        DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String time=format.format(date);
+        sqlBeans.setDaoUrl(urls);
+        sqlBeans.setUrlImg(urlIg);
+        sqlBeans.setUrlData(time);
+        sqlBeans.setUrlLen(len);
+        sqlBeans.setUrlTitle(title);
+        sqlBeans.setId(null);
+        sqlBeansDao.insert(sqlBeans);
+
+        Log.e("TAG", "setResult: " + urls);
+        videoJP.setUp(urls, title);
+
+        shareImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UMImage imgs = new UMImage(App.getContext(), image);
+                UMVideo video = new UMVideo(urls);
+                video.setTitle(title);//视频的标题
+                video.setThumb(imgs);//视频的缩略图
+                video.setDescription("PandaChannel");//视频的描述
+                new ShareAction(VideoActivity.this)
+                        .setPlatform(SHARE_MEDIA.QQ)//传入平台
+                        .withMedia(video)
+                        .setCallback(UMengUtls.shareListener)//回调监听器
+                        .share();
+
+            }
+        });
+
+
+        collectionlImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               switch (VIDEO){
+                   case 0:
+                       VIDEO=1;
+                       collectionlImg.setImageResource(R.mipmap.collect_yes);
+                       Toast.makeText(VideoActivity.this,"收藏成功",Toast.LENGTH_SHORT).show();
+
+                       break;
+                   case 1:
+                       VIDEO=0;
+                       collectionlImg.setImageResource(R.mipmap.collect_no);
+                       Toast.makeText(VideoActivity.this,"取消收藏",Toast.LENGTH_SHORT).show();
+
+                       break;
+               }
+
+
+
+            }
+        });
+
+
+
+
 
     }
 
     @Override
     public void showMessage(String msg) {
+
 
     }
 

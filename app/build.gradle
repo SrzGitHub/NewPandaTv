@@ -1,6 +1,9 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'org.greenrobot.greendao'
 android {
+    dexOptions {
+        jumboMode true
+    }
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
     defaultConfig {
@@ -17,14 +20,32 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    greendao {
+        schemaVersion 1
+        daoPackage 'co.com.newpandatv.dao'
+        targetGenDir 'src/main/java'
+    }
 }
+
+
+
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile files('libs/SocialSDK_facebook.jar')
+    compile files('libs/SocialSDK_QQ_Simplify.jar')
+    compile files('libs/SocialSDK_twitter.jar')
+    compile files('libs/umeng_shareboard_widget.jar')
+    compile files('libs/umeng_social_api.jar')
+    compile files('libs/umeng_social_net.jar')
+    compile files('libs/umeng_social_shareboard.jar')
+    compile files('libs/umeng_social_shareview.jar')
+    compile files('libs/umeng_social_tool.jar')
     compile 'fm.jiecao:jiecaovideoplayer:2.0'
+    compile 'org.greenrobot:greendao:3.2.0'
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.squareup.okhttp3:okhttp:3.8.1'
@@ -38,30 +59,13 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.jude:rollviewpager:1.4.5'
-    compile 'com.google.zxing:core:3.2.1'
     compile 'com.journeyapps:zxing-android-embedded:3.3.0'
     compile 'org.litepal.android:core:1.5.0'
     compile 'org.xutils:xutils:3.3.40'
     compile 'com.wang.avi:library:1.0.1'
     compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
     compile 'in.srain.cube:ptr-load-more:1.0.6'
-    compile 'com.github.chrisbanes:PhotoView:1.2.6'
-    compile 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
-    compile 'fm.jiecao:jiecaovideoplayer:2.0'
-    compile 'com.zhy:autolayout:1.4.3'
-    compile 'com.android.support:support-v4:26.+'
-    compile 'com.github.userswlwork:pull-to-refresh:1.0.0'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
-
-    compile files('libs/SocialSDK_facebook.jar')
-    compile files('libs/SocialSDK_QQ_Simplify.jar')
-    compile files('libs/SocialSDK_twitter.jar')
-    compile files('libs/umeng_shareboard_widget.jar')
-    compile files('libs/umeng_social_api.jar')
-    compile files('libs/umeng_social_net.jar')
-    compile files('libs/umeng_social_shareboard.jar')
-    compile files('libs/umeng_social_shareview.jar')
-    compile files('libs/umeng_social_tool.jar')
 }

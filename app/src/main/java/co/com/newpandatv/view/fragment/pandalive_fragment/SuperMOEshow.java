@@ -127,6 +127,9 @@ public class SuperMOEshow extends BaseFragment implements SuperMOEshowContract.V
                 Intent intent = new Intent(App.context, VideoActivity.class);
                 intent.putExtra("vid", showList.get(i).getVid());
                 intent.putExtra("title", showList.get(i).getT());
+                intent.putExtra("data",showList.get(i).getPtime());
+                intent.putExtra("len",showList.get(i).getLen());
+                intent.putExtra("urlIg",showList.get(i).getImg());
                 startActivity(intent);
             }
         });

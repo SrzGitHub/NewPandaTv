@@ -26,14 +26,12 @@ public class WonderfulMomentPresenter implements WonderfulMomentContract.WonderP
     }
     @Override
     public void start() {
-        wonderfulView.showProgressDialog();
 
         wonderfulMomentModel.getWonderFu(new MyNetWorkCallback<WonderfuMomentBean>() {
             @Override
             public void onSuccess(WonderfuMomentBean wonderfuMomentBean) {
 
                 wonderfulView.setResult(wonderfuMomentBean);
-                wonderfulView.dismissDialog();
             }
 
             @Override

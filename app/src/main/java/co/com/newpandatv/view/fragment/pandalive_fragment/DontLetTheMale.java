@@ -121,6 +121,9 @@ public class DontLetTheMale extends BaseFragment implements DonModelContract.Vie
                 Intent intent = new Intent(App.context, VideoActivity.class);
                 intent.putExtra("vid", donList.get(i).getVid());
                 intent.putExtra("title", donList.get(i).getT());
+                intent.putExtra("data",donList.get(i).getPtime());
+                intent.putExtra("len",donList.get(i).getLen());
+                intent.putExtra("urlIg",donList.get(i).getImg());
                 startActivity(intent);
             }
         });
