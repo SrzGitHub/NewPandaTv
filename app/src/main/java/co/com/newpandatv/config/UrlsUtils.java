@@ -53,7 +53,7 @@ public class UrlsUtils {
     public  static final String MOVIE = "http://115.182.9.189/api/getVideoInfoForCBox.do";
     //首页互动
     public static final String HUDONG=BASEURL+"PAGE14501767715521482/index.json";
-
+    public static final String LIVECHINA=BASEURL+"PAGE14501775094142282/index.json";
 
 
     // 八达岭
