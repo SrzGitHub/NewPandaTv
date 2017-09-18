@@ -31,7 +31,7 @@ public class DonAdapter extends AbsAdapter<DonBean.VideoBean> {
         TextView donTitle = (TextView) holder.getView(R.id.pandaLiveTitle);
         TextView donDate = (TextView) holder.getView(R.id.pandaLiveDate);
 
-        Glide.with(App.getContext()).load(data.getImg()).fitCenter().into(donImg);
+        Glide.with(App.mContext).load(data.getImg()).fitCenter().into(donImg);
         donDate.setText(data.getPtime());
         donLen.setText(data.getLen());
         donTitle.setText(data.getT());

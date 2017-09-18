@@ -31,7 +31,7 @@ public class SQLAdapter extends AbsAdapter<SQLBeans> {
         TextView daoLen = (TextView) holder.getView(R.id.daoLen);
         TextView daoData = (TextView) holder.getView(R.id.daoDate);
         ImageView daoImg = (ImageView) holder.getView(R.id.daoImg);
-        Glide.with(App.getContext()).load(data.getUrlImg()).into(daoImg);
+        Glide.with(App.mContext).load(data.getUrlImg()).into(daoImg);
         daoTitle.setText(data.getUrlTitle());
         daoLen.setText(data.getUrlLen());
         daoData.setText(data.getUrlData());

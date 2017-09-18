@@ -29,7 +29,7 @@ public class TionAdapter extends AbsAdapter<TionBean.InteractiveBean> {
         TextView tion_Name = (TextView) holder.getView(R.id.tion_Name);
         ImageView tion_Img = (ImageView) holder.getView(R.id.tion_Img);
 
-        Glide.with(App.getContext()).load(data.getImage()).fitCenter().into(tion_Img);
+        Glide.with(App.mContext).load(data.getImage()).fitCenter().into(tion_Img);
         tion_Name.setText(data.getTitle());
     }
 }

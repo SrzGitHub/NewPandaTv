@@ -31,7 +31,7 @@ public class OriginalNewsAdapter extends AbsAdapter<OriginalNewsBean.VideoBean> 
         TextView newsTitle = (TextView) holder.getView(R.id.pandaLiveTitle);
         TextView newsDate = (TextView) holder.getView(R.id.pandaLiveDate);
 
-        Glide.with(App.getContext()).load(data.getImg()).fitCenter().into(newsImg);
+        Glide.with(App.mContext).load(data.getImg()).fitCenter().into(newsImg);
         newsDate.setText(data.getPtime());
         newsLen.setText(data.getLen());
         newsTitle.setText(data.getT());

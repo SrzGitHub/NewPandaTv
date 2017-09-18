@@ -42,7 +42,7 @@ public class WonderFuAdapter extends AbsAdapter<WonderfuMomentBean.VideoBean> {
         TextView derLen = (TextView) holder.getView(pandaLiveLen);
 
 
-        Glide.with(App.getContext()).load(data.getImg()).fitCenter().into(derImg);
+        Glide.with(App.mContext).load(data.getImg()).fitCenter().into(derImg);
         derTitle.setText(data.getT());
         derDate.setText(data.getPtime());
         derLen.setText(data.getLen());

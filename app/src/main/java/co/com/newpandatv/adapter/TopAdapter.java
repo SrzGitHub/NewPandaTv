@@ -37,7 +37,7 @@ public class TopAdapter extends AbsAdapter<TopBean.VideoBean> {
         TextView topLen = (TextView) holder.getView(pandaLiveLen);
 
 
-        Glide.with(App.getContext()).load(data.getImg()).fitCenter().into(topImg);
+        Glide.with(App.mContext).load(data.getImg()).fitCenter().into(topImg);
         topTitle.setText(data.getT());
         topDate.setText(data.getPtime());
         topLen.setText(data.getLen());

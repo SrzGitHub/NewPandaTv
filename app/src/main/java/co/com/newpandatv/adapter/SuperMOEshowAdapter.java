@@ -38,7 +38,7 @@ public class SuperMOEshowAdapter extends AbsAdapter<SuperMOEshowBean.VideoBean> 
         TextView showLen = (TextView) holder.getView(pandaLiveLen);
 
 
-        Glide.with(App.getContext()).load(data.getImg()).fitCenter().into(showImg);
+        Glide.with(App.mContext).load(data.getImg()).fitCenter().into(showImg);
         showTitle.setText(data.getT());
         showDate.setText(data.getPtime());
         showLen.setText(data.getLen());

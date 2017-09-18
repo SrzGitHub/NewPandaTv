@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_gravity="center_horizontal"
+        android:layout_width="140dp"
+        android:layout_height="70dp">
+        <ImageView
+            android:scaleType="centerCrop"
+            android:id="@+id/grid_image"
+            android:layout_gravity="center"
+            android:layout_width="140dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_height="70dp" />
+        <ImageView
+            android:id="@+id/aaa"
+            android:src="@mipmap/default_time_view"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_alignBottom="@+id/grid_image"
+            android:layout_alignLeft="@+id/grid_image"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/ccc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/aaa"
+            android:layout_alignLeft="@+id/aaa"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="4dp"
+            android:src="@mipmap/lpanda_live_layer"/>
+        <TextView
+            android:id="@+id/item_list_time"
+            android:text="Live"
+            android:textColor="#eee"
+            android:layout_marginLeft="40dp"
+            android:layout_alignBottom="@+id/aaa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/grid_text"
+        android:layout_gravity="center"
+        android:text="aaaaaaaa"
+        android:textSize="12dp"
+        android:layout_marginTop="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp" />
+</LinearLayout>

@@ -3,7 +3,7 @@ package co.com.newpandatv.module.home;
 
 import co.com.newpandatv.model.biz.IPandaLiveModel;
 import co.com.newpandatv.model.biz.PandaLiveModelImpl;
-import co.com.newpandatv.model.entity.PandaLiveBean;
+import co.com.newpandatv.model.entity.home_video_bean.PandaLiveLiuBean;
 import co.com.newpandatv.net.callback.MyNetWorkCallback;
 
 public class HomePresenter implements HomeContract.Presenter {
@@ -20,11 +20,13 @@ public class HomePresenter implements HomeContract.Presenter {
     @Override
     public void start() {
 
-        pandaLiveModel.getPadDaLive(new MyNetWorkCallback<PandaLiveBean>() {
-            @Override
-            public void onSuccess(PandaLiveBean pandaLiveBean) {
 
-                homeView.setResult(pandaLiveBean);
+
+        pandaLiveModel.getPadDaLive(new MyNetWorkCallback<PandaLiveLiuBean>() {
+            @Override
+            public void onSuccess(PandaLiveLiuBean pandaLiveLiuBean) {
+
+                homeView.setResult(pandaLiveLiuBean);
             }
 
             @Override

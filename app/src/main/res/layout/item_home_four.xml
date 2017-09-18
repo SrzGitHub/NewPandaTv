@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#eee"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/home_four_tv"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="精彩一刻"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/color_home_lan"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"/>
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="270dp">
+        <GridView
+            android:id="@+id/home_four_grid"
+            android:horizontalSpacing="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:numColumns="2"
+            ></GridView>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+</LinearLayout>

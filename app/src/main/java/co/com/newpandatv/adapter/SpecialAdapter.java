@@ -37,7 +37,7 @@ public class SpecialAdapter extends AbsAdapter<SpecialBean.VideoBean> {
         TextView speLen = (TextView) holder.getView(pandaLiveLen);
 
 
-        Glide.with(App.getContext()).load(data.getImg()).fitCenter().into(soeImg);
+        Glide.with(App.mContext).load(data.getImg()).fitCenter().into(soeImg);
         speTitle.setText(data.getT());
         speDate.setText(data.getPtime());
         speLen.setText(data.getLen());
