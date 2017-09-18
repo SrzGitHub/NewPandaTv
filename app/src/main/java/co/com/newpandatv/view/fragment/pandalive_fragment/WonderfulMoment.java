@@ -142,7 +142,7 @@ public class WonderfulMoment extends BaseFragment implements WonderfulMomentCont
 
         pandaLiveList.addAll(wonderfuMomentBean.getVideo());
         Log.e("TAG", "setResult: " + pandaLiveList.size());
-        wonderFuAdapter = new WonderFuAdapter(App.getContext(), R.layout.pandalive_list_item, pandaLiveList);
+        wonderFuAdapter = new WonderFuAdapter(App.mContext, R.layout.pandalive_list_item, pandaLiveList);
         pandaLiveListView.setAdapter(wonderFuAdapter);
 
 //        wonderfuMomentBean.getVideo()
@@ -179,5 +179,11 @@ public class WonderfulMoment extends BaseFragment implements WonderfulMomentCont
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
     }
 }

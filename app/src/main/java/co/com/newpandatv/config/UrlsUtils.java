@@ -40,7 +40,7 @@ public class UrlsUtils {
     //原创新闻
     public static final String NEWS = "http://api.cntv.cn/video/videolistById?vsid=VSET100219009515&n=7&serviceId=panda&o=desc&of=time&p=";
 
-
+    public static final String PINGLUN ="http://newcomment.cntv.cn/comment/list?prepage=20&app=ipandaApp&itemid=zhiboye_chat&nature=1&page=1";
     //邮箱注册
     public static final String EMAILREGIST20ER = "https://reg.cntv.cn/api/register.action";
     //熊猫播报

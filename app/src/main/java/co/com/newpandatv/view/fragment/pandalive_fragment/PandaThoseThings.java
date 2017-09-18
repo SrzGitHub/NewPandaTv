@@ -1,6 +1,5 @@
 package co.com.newpandatv.view.fragment.pandalive_fragment;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +32,7 @@ import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
 import in.srain.cube.views.ptr.PtrDefaultHandler2;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 
+
 /**
  * Created by Administrator on 2017/9/12.
  * 作者：大姨夫
@@ -64,6 +64,9 @@ public class PandaThoseThings extends BaseFragment implements PandaThoseThingsMo
 
     @Override
     protected void loadData() {
+
+
+
         thosePresnter.start();
         initDate();
     }
@@ -80,7 +83,7 @@ public class PandaThoseThings extends BaseFragment implements PandaThoseThingsMo
         pandaPfl.setPtrHandler(new PtrDefaultHandler2() {
             @Override
             public void onLoadMoreBegin(PtrFrameLayout frame) {
-                Log.e("TAG", "onLoadMoreBegin:开始 加载更多");
+                Log.e("TAG", "onLoadMoreBegin:开始加载更多");
                 App.PAGER++;
                 thosePresnter.start();
                 pandaPfl.refreshComplete();
@@ -88,7 +91,7 @@ public class PandaThoseThings extends BaseFragment implements PandaThoseThingsMo
 
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
-                Log.e("TAG", "onLoadMoreBegin: 开始加载");
+                Log.e("TAG", "onLoadMoreBegin: 开始刷新");
                 App.PAGER = 1;
                 thoseList.clear();
                 thosePresnter.start();
@@ -119,7 +122,7 @@ public class PandaThoseThings extends BaseFragment implements PandaThoseThingsMo
         thoseList.addAll(pandaThoseThingsBean.getVideo());
 
 
-        absAdapter = new AbsAdapter<PandaThoseThingsBean.VideoBean>(App.getContext(), R.layout.pandalive_list_item, thoseList) {
+        absAdapter = new AbsAdapter<PandaThoseThingsBean.VideoBean>(App.mContext, R.layout.pandalive_list_item, thoseList) {
             @Override
             public void bindResponse(ViewHolder holder, PandaThoseThingsBean.VideoBean data) {
                 ImageView donImg = (ImageView) holder.getView(R.id.pandaLiveImg);
@@ -127,7 +130,7 @@ public class PandaThoseThings extends BaseFragment implements PandaThoseThingsMo
                 TextView donTitle = (TextView) holder.getView(R.id.pandaLiveTitle);
                 TextView donDate = (TextView) holder.getView(R.id.pandaLiveDate);
 
-                Glide.with(App.context).load(data.getImg()).into(donImg);
+                Glide.with(App.mContext).load(data.getImg()).into(donImg);
                 donDate.setText(data.getPtime());
                 donLen.setText(data.getLen());
                 donTitle.setText(data.getT());

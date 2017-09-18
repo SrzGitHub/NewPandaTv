@@ -9,10 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
 import co.com.newpandatv.R;
+import co.com.newpandatv.app.App;
 import co.com.newpandatv.model.entity.MultioLeBeans;
 
 /**
@@ -42,7 +44,7 @@ public class MutioViewAdapter extends RecyclerView.Adapter<MutioViewAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHodler holder, int position) {
-        Glide.with(context).load(muList.get(position).getImage()).fitCenter().into(holder.twoImg);
+        Glide.with(App.mContext).load(muList.get(position).getImage()).diskCacheStrategy(DiskCacheStrategy.ALL).fitCenter().into(holder.twoImg);
         holder.twoTitle.setText(muList.get(position).getTitle());
     }
 

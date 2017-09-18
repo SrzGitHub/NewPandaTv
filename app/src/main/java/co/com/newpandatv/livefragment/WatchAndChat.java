@@ -21,6 +21,7 @@ import co.com.newpandatv.R;
 import co.com.newpandatv.adapter.AbsAdapter;
 import co.com.newpandatv.app.App;
 import co.com.newpandatv.base.BaseFragment;
+import co.com.newpandatv.livefragment.contract_presenter.WatchAndChatModelContract;
 import co.com.newpandatv.model.entity.WcheBean;
 import co.com.newpandatv.model.entity.WcheString;
 import co.com.newpandatv.view.listview.MyListView;
@@ -33,7 +34,7 @@ import co.com.newpandatv.view.listview.MyListView;
  * 跌在谷底,思人生
  */
 
-public class WatchAndChat extends BaseFragment {
+public class WatchAndChat extends BaseFragment implements WatchAndChatModelContract.View{
     @BindView(R.id.wccListView)
     MyListView wccListView;
     Unbinder unbinder;
@@ -41,9 +42,12 @@ public class WatchAndChat extends BaseFragment {
     EditText wchEdText;
     @BindView(R.id.wchBut)
     Button wchBut;
+    WatchAndChatModelContract.WatchAndPresenter watchAndPresenter;
+    List<WcheBean.DataBean.ContentBean> watList = new ArrayList<>();
+    AbsAdapter<WcheBean.DataBean.ContentBean> watAbsAdapter;
 
-    List<WcheBean>  wchList = new ArrayList<>();
-    AbsAdapter<WcheBean> absAdapterWch;
+
+
 
     @Override
     protected int getLayoutId() {
@@ -58,33 +62,8 @@ public class WatchAndChat extends BaseFragment {
     @Override
     protected void loadData() {
 
-        for (int i = 0; i < 10; i++) {
-            WcheBean wcheBean = new WcheBean();
-            wcheBean.setName(WcheString.NAME[i]);
-            wcheBean.setLog(WcheString.LOG[i]);
-            wcheBean.setTim(WcheString.TIM[i]);
-            wcheBean.setTitle(WcheString.TITLE[i]);
-            wchList.add(wcheBean);
+        watchAndPresenter.start();
 
-        }
-
-
-        absAdapterWch = new AbsAdapter<WcheBean>(App.context,R.layout.wche_list_item,wchList) {
-            @Override
-            public void bindResponse(ViewHolder holder, WcheBean data) {
-                TextView wchName = (TextView) holder.getView(R.id.wcName);
-                TextView wchTitle = (TextView) holder.getView(R.id.wchTitle);
-                TextView wchTim = (TextView) holder.getView(R.id.wchTim);
-                TextView wchLog = (TextView) holder.getView(R.id.wchLog);
-
-                wchName.setText(data.getName());
-                wchLog.setText(data.getLog());
-                wchTim.setText(data.getTim());
-                wchTitle.setText(data.getTitle());
-
-            }
-        };
-            wccListView.setAdapter(absAdapterWch);
     }
 
     @Override
@@ -107,4 +86,46 @@ public class WatchAndChat extends BaseFragment {
     }
 
 
+    @Override
+    public void setPresenter(WatchAndChatModelContract.WatchAndPresenter watchAndPresenter) {
+        this.watchAndPresenter = watchAndPresenter;
+
+    }
+
+    @Override
+    public void showProgressDialog() {
+
+    }
+
+    @Override
+    public void dismissDialog() {
+
+    }
+
+    @Override
+    public void setResult(WcheBean wcheBean) {
+        watList.addAll(wcheBean.getData().getContent());
+        watAbsAdapter = new AbsAdapter<WcheBean.DataBean.ContentBean>(App.mContext,R.layout.wche_list_item,watList) {
+            @Override
+            public void bindResponse(ViewHolder holder, WcheBean.DataBean.ContentBean data) {
+                TextView wcName = (TextView) holder.getView(R.id.wcName);
+                TextView wcLog = (TextView) holder.getView(R.id.wchLog);
+                TextView wcTitle = (TextView) holder.getView(R.id.wchTitle);
+                TextView wcTim = (TextView) holder.getView(R.id.wchTim);
+                wcName.setText(data.getAuthor());
+                wcTitle.setText(data.getMessage());
+                wcLog.setText(data.getAuthorid());
+                wcTim.setText(data.getDateline());
+
+
+            }
+        };
+        wccListView.setAdapter(watAbsAdapter);
+
+    }
+
+    @Override
+    public void showMessage(String msg) {
+
+    }
 }

@@ -53,7 +53,7 @@ public abstract class AbsAdapter<T> extends BaseAdapter {
 
 		if (convertView == null) {
 
-			convertView = LayoutInflater.from(App.getContext()).inflate(layoutId, null);
+			convertView = LayoutInflater.from(context).inflate(layoutId, null);
 			holder = new ViewHolder(convertView);
 
 			convertView.setTag(holder);

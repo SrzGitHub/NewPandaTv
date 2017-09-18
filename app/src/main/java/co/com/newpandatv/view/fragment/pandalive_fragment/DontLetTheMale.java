@@ -113,7 +113,7 @@ public class DontLetTheMale extends BaseFragment implements DonModelContract.Vie
     public void setResult(DonBean donBean) {
         donList.addAll(donBean.getVideo());
 
-        donAdapter = new DonAdapter(App.getContext(), R.layout.pandalive_list_item, donList);
+        donAdapter = new DonAdapter(App.mContext, R.layout.pandalive_list_item, donList);
         pandaLiveListView.setAdapter(donAdapter);
         pandaLiveListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

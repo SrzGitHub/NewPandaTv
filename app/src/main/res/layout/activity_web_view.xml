@@ -23,7 +23,7 @@
             android:id="@+id/web_Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
+            android:textSize="15sp"
             android:layout_weight="1"
             android:textColor="@color/biz_audio_progress_first"
             android:layout_gravity="center_vertical"

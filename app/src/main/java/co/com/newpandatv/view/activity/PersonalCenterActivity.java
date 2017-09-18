@@ -132,10 +132,14 @@ public class PersonalCenterActivity extends AppCompatActivity {
 
                 break;
             case R.id.lishi:
-                startActivity(new Intent(App.getContext(),SQLActivity.class));
+                Intent intent = new Intent(App.getContext(),SQLActivity.class);
+                intent.putExtra("title","观看历史");
+                startActivity(intent);
                 break;
             case R.id.shoucang:
-               startActivity(new Intent(App.getContext(),SQLActivity.class));
+                Intent in = new Intent(App.getContext(),SQLActivity.class);
+                in.putExtra("title","收藏");
+                startActivity(in);
                 break;
             case R.id.shezhi:
                startActivity(new Intent(PersonalCenterActivity.this,SetUpActivity.class));

@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class OriginalNewsAdapter extends AbsAdapter<OriginalNewsBean.VideoBean> 
         TextView newsTitle = (TextView) holder.getView(R.id.pandaLiveTitle);
         TextView newsDate = (TextView) holder.getView(R.id.pandaLiveDate);
 
-        Glide.with(App.getContext()).load(data.getImg()).fitCenter().into(newsImg);
+        Glide.with(App.mContext).load(data.getImg()).diskCacheStrategy(DiskCacheStrategy.ALL).fitCenter().into(newsImg);
         newsDate.setText(data.getPtime());
         newsLen.setText(data.getLen());
         newsTitle.setText(data.getT());

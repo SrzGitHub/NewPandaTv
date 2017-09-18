@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class WonderFuAdapter extends AbsAdapter<WonderfuMomentBean.VideoBean> {
         TextView derLen = (TextView) holder.getView(pandaLiveLen);
 
 
-        Glide.with(App.getContext()).load(data.getImg()).fitCenter().into(derImg);
+        Glide.with(App.mContext).load(data.getImg()).diskCacheStrategy(DiskCacheStrategy.ALL).fitCenter().into(derImg);
         derTitle.setText(data.getT());
         derDate.setText(data.getPtime());
         derLen.setText(data.getLen());
