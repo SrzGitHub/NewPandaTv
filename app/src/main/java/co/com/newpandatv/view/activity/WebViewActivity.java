@@ -55,10 +55,10 @@ public class WebViewActivity extends AppCompatActivity {
         webView.setScrollBarStyle(1);//滚动条风格，为0指滚动条不占用空间，直接覆盖在网页上
         webTitle.setText(title);
         webView.loadUrl(webUrl);
+
+
         thumb = new UMImage(WebViewActivity.this, img);
-
         web = new UMWeb(webUrl);
-
         web.setThumb(thumb);
         web.setTitle(title);//标题
         web.setDescription("原创互动分享：" + title);//描述

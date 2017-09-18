@@ -10,7 +10,7 @@
     <color name="color_text_selected">#FFFFFF</color>
     <color name="color_text_normal">#000000</color>
     <array name="color_list_bake">#CCCCCC</array>
-
+    <color name="color_home_lan">#7171C6</color>
     <color name="gray_8f">#8f8f8f</color>
     <!--灰色8f -->
 

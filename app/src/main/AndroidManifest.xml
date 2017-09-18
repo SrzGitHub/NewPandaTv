@@ -85,8 +85,21 @@
     <activity android:name=".shaer.AutoActivity"/>
         <activity android:name=".shaer.InfoActivity"/>
         <activity android:name=".shaer.UserActivity"/>
+        <activity android:name=".view.activity.homeactivity.VideoLiuActivity"
+            android:screenOrientation="landscape"
 
-
+            />
+        <activity android:name=".view.activity.homeactivity.HomeWebActivity"
+            />
+        <activity android:name=".view.activity.homeactivity.AreaHomeActivity"
+            android:screenOrientation="landscape"
+            />
+        <activity android:name=".view.activity.homeactivity.ListHomeActivity"
+            android:screenOrientation="landscape"
+            />
+        <activity android:name=".view.activity.homeactivity.BigImgHomeActivity"
+            android:screenOrientation="landscape"
+            ></activity>
     </application>
 
 </manifest>

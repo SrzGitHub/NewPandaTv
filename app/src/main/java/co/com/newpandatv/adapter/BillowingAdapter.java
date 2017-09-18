@@ -31,6 +31,7 @@ public class BillowingAdapter extends AbsAdapter<BillowingVideoBean.ListBean> {
         TextView mCon = (TextView) holder.getView(R.id.mContent_g);
         ImageView mImg = (ImageView) holder.getView(R.id.mImage_g);
         Glide.with(App.mContext).load(data.getImage()).diskCacheStrategy(DiskCacheStrategy.ALL).fitCenter().into(mImg);
+
         mTim.setText(data.getVideoLength());
         mCon.setText(data.getBrief());
         mTitle.setText(data.getTitle());
