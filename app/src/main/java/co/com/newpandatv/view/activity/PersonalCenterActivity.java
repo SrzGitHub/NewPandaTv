@@ -24,13 +24,7 @@ import butterknife.OnClick;
 import co.com.newpandatv.R;
 import co.com.newpandatv.app.App;
 import co.com.newpandatv.shaer.AutoActivity;
-import co.com.newpandatv.shaer.InfoActivity;
 import co.com.newpandatv.shaer.UserActivity;
-
-import static co.com.newpandatv.R.id.pr_php;
-import static co.com.newpandatv.R.id.thumb;
-import static co.com.newpandatv.R.id.userinfo;
-import static com.umeng.qq.handler.a.p;
 
 public class PersonalCenterActivity extends AppCompatActivity {
 
@@ -124,7 +118,6 @@ public class PersonalCenterActivity extends AppCompatActivity {
                        break;
                    /*case 2:
                        USER =1;
-
 
                        break;*/
                }
