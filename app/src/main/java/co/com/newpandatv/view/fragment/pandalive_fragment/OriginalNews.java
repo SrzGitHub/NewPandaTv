@@ -127,7 +127,7 @@ public class OriginalNews extends BaseFragment implements OriginalNewsModelContr
     public void setResult(OriginalNewsBean originalNewsBean) {
         newsList.addAll(originalNewsBean.getVideo());
 
-        originalNewsAdapter = new OriginalNewsAdapter(App.getContext(), R.layout.pandalive_list_item, newsList);
+        originalNewsAdapter = new OriginalNewsAdapter(App.mContext, R.layout.pandalive_list_item, newsList);
         pandaLiveListView.setAdapter(originalNewsAdapter);
         pandaLiveListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

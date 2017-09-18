@@ -27,6 +27,7 @@ import co.com.newpandatv.app.App;
 import co.com.newpandatv.base.BaseFragment;
 import co.com.newpandatv.livefragment.MultiViewLiveBroadcast;
 import co.com.newpandatv.livefragment.WatchAndChat;
+import co.com.newpandatv.livefragment.contract_presenter.WatchAndChatModelPresenter;
 import co.com.newpandatv.model.entity.PandaLiveBean;
 import co.com.newpandatv.module.home.contract.LiveFrgmentModelContract;
 import co.com.newpandatv.presenter.MultioLeModelPresnter;
@@ -118,6 +119,7 @@ public class LiveFrgment extends BaseFragment implements LiveFrgmentModelContrac
                 shouFragMent(transaction1);
                 if (watchAndChat==null){
                     watchAndChat = new WatchAndChat();
+                    new WatchAndChatModelPresenter(watchAndChat);
                     transaction1.add(R.id.addFragMent,watchAndChat);
                 }else {
                     transaction1.show(watchAndChat);

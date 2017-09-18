@@ -21,11 +21,6 @@ import co.com.newpandatv.R;
 import co.com.newpandatv.adapter.WonderFuAdapter;
 import co.com.newpandatv.app.App;
 import co.com.newpandatv.base.BaseFragment;
-import co.com.newpandatv.dao.DaoMaster;
-import co.com.newpandatv.dao.DaoSession;
-import co.com.newpandatv.dao.DaoUtil;
-import co.com.newpandatv.dao.SQLBeans;
-import co.com.newpandatv.dao.SQLBeansDao;
 import co.com.newpandatv.model.entity.WonderfuMomentBean;
 import co.com.newpandatv.module.home.contract.WonderfulMomentContract;
 import co.com.newpandatv.view.activity.VideoActivity;
@@ -147,7 +142,7 @@ public class WonderfulMoment extends BaseFragment implements WonderfulMomentCont
 
         pandaLiveList.addAll(wonderfuMomentBean.getVideo());
         Log.e("TAG", "setResult: " + pandaLiveList.size());
-        wonderFuAdapter = new WonderFuAdapter(App.getContext(), R.layout.pandalive_list_item, pandaLiveList);
+        wonderFuAdapter = new WonderFuAdapter(App.mContext, R.layout.pandalive_list_item, pandaLiveList);
         pandaLiveListView.setAdapter(wonderFuAdapter);
 
 //        wonderfuMomentBean.getVideo()
@@ -184,5 +179,11 @@ public class WonderfulMoment extends BaseFragment implements WonderfulMomentCont
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
     }
 }

@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class TionAdapter extends AbsAdapter<TionBean.InteractiveBean> {
         TextView tion_Name = (TextView) holder.getView(R.id.tion_Name);
         ImageView tion_Img = (ImageView) holder.getView(R.id.tion_Img);
 
-        Glide.with(App.mContext).load(data.getImage()).fitCenter().into(tion_Img);
+        Glide.with(App.mContext).load(data.getImage()).diskCacheStrategy(DiskCacheStrategy.ALL).fitCenter().into(tion_Img);
         tion_Name.setText(data.getTitle());
     }
 }

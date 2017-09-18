@@ -5,9 +5,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
+import co.com.newpandatv.R;
 import co.com.newpandatv.app.App;
 import co.com.newpandatv.model.entity.SuperMOEshowBean;
 
@@ -37,7 +39,7 @@ public class SuperMOEshowAdapter extends AbsAdapter<SuperMOEshowBean.VideoBean> 
         TextView showLen = (TextView) holder.getView(pandaLiveLen);
 
 
-        Glide.with(App.mContext).load(data.getImg()).fitCenter().into(showImg);
+        Glide.with(App.mContext).load(data.getImg()).diskCacheStrategy(DiskCacheStrategy.ALL).fitCenter().into(showImg);
         showTitle.setText(data.getT());
         showDate.setText(data.getPtime());
         showLen.setText(data.getLen());

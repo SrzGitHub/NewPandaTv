@@ -111,7 +111,7 @@ public class Panda_Top_List extends BaseFragment implements TopContract.View {
         topList.addAll(topBean.getVideo());
 
 
-        topAdapter = new TopAdapter(App.getContext(), R.layout.pandalive_list_item, topList);
+        topAdapter = new TopAdapter(App.mContext, R.layout.pandalive_list_item, topList);
         pandaLiveListView.setAdapter(topAdapter);
         pandaLiveListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

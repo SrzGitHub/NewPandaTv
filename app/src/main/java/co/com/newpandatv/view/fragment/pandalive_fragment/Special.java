@@ -125,7 +125,7 @@ public class Special extends BaseFragment implements SpecialModelContract.View {
     public void setResult(SpecialBean specialBean) {
         spList.addAll(specialBean.getVideo());
 
-        specialAdapter = new SpecialAdapter(App.context, R.layout.pandalive_list_item, spList);
+        specialAdapter = new SpecialAdapter(App.mContext, R.layout.pandalive_list_item, spList);
         pandaLiveListView.setAdapter(specialAdapter);
         pandaLiveListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

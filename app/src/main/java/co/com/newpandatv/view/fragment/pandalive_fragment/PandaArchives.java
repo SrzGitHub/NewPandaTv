@@ -111,7 +111,7 @@ public class PandaArchives extends BaseFragment implements PandaArchivesModeCont
 
         pandaArcList.addAll(pandaArchivesBean.getVideo());
 
-        pandaArchivesAdapter = new PandaArchivesAdapter(App.context, R.layout.pandalive_list_item, pandaArcList);
+        pandaArchivesAdapter = new PandaArchivesAdapter(App.mContext, R.layout.pandalive_list_item, pandaArcList);
         pandaLiveListView.setAdapter(pandaArchivesAdapter);
         pandaLiveListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

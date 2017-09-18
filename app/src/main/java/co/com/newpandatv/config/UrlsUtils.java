@@ -40,7 +40,7 @@ public class UrlsUtils {
     //原创新闻
     public static final String NEWS = "http://api.cntv.cn/video/videolistById?vsid=VSET100219009515&n=7&serviceId=panda&o=desc&of=time&p=";
 
-
+    public static final String PINGLUN ="http://newcomment.cntv.cn/comment/list?prepage=20&app=ipandaApp&itemid=zhiboye_chat&nature=1&page=1";
     //邮箱注册
     public static final String EMAILREGIST20ER = "https://reg.cntv.cn/api/register.action";
     //熊猫播报
@@ -53,7 +53,7 @@ public class UrlsUtils {
     public  static final String MOVIE = "http://115.182.9.189/api/getVideoInfoForCBox.do";
     //首页互动
     public static final String HUDONG=BASEURL+"PAGE14501767715521482/index.json";
-
+    public static final String LIVECHINA=BASEURL+"PAGE14501775094142282/index.json";
 
 
     // 八达岭

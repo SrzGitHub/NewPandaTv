@@ -119,7 +119,7 @@ public class SuperMOEshow extends BaseFragment implements SuperMOEshowContract.V
     @Override
     public void setResult(SuperMOEshowBean superMOEshowBean) {
         showList.addAll(superMOEshowBean.getVideo());
-        superMOEshowAdapter = new SuperMOEshowAdapter(App.context, R.layout.pandalive_list_item, showList);
+        superMOEshowAdapter = new SuperMOEshowAdapter(App.mContext, R.layout.pandalive_list_item, showList);
         pandaLiveListView.setAdapter(superMOEshowAdapter);
         pandaLiveListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

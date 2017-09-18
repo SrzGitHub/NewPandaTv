@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_info"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".shaer.InfoActivity">
+
+    <include
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        layout="@layout/titlebar" />
+
+    <Button
+        android:id="@+id/closebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_bar"
+        android:text="清除"
+        android:layout_margin="10dp"/>
+    
+    <Button
+        android:id="@+id/getbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_bar"
+        android:text="获取用户信息"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        />
+    
+    <TextView
+        android:id="@+id/userinfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/getbtn"
+        android:layout_margin="10dp"
+        android:background="@color/umeng_background"/>
+
+    <ImageView
+        android:id="@+id/infoImg"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/infoName"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="123"
+        android:layout_below="@+id/infoImg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
+</RelativeLayout>

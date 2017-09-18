@@ -23,7 +23,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
+            android:textSize="20sp"
+            android:id="@+id/mTitles"
+            android:layout_marginRight="30dp"
             android:layout_weight="1"
             android:text="收藏"
             android:textColor="@color/biz_audio_progress_first"

@@ -5,13 +5,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -33,6 +32,9 @@ public class SQLActivity extends AppCompatActivity {
     SQLAdapter sqlAdapter;
     @BindView(R.id.sql_IMG)
     ImageView sqlIMG;
+    @BindView(R.id.mTitles)
+    TextView mTitles;
+
     private SQLiteDatabase r;
     private DaoMaster daoMaster;
     private DaoSession daoSession;
@@ -46,6 +48,9 @@ public class SQLActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sql);
         ButterKnife.bind(this);
+        String title = getIntent().getStringExtra("title");
+        mTitles.setText(title);
+
         r = DaoUtil.getIn(this).getR();
         daoMaster = new DaoMaster(r);
         daoSession = daoMaster.newSession();

@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class PandaArchivesAdapter extends AbsAdapter<PandaArchivesBean.VideoBean
         TextView pandaLiveLen = (TextView) holder.getView(R.id.pandaLiveLen);
 
 
-        Glide.with(App.mContext).load(data.getImg()).fitCenter().into(pandaLiveImg);
+        Glide.with(App.mContext).load(data.getImg()).diskCacheStrategy(DiskCacheStrategy.ALL).fitCenter().into(pandaLiveImg);
         pandaLiveTitle.setText(data.getT());
         pandaLiveDate.setText(data.getPtime());
         pandaLiveLen.setText(data.getLen());

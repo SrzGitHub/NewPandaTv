@@ -5,9 +5,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
+import co.com.newpandatv.R;
 import co.com.newpandatv.app.App;
 import co.com.newpandatv.model.entity.TopBean;
 
@@ -36,7 +38,7 @@ public class TopAdapter extends AbsAdapter<TopBean.VideoBean> {
         TextView topLen = (TextView) holder.getView(pandaLiveLen);
 
 
-        Glide.with(App.mContext).load(data.getImg()).fitCenter().into(topImg);
+        Glide.with(App.mContext).load(data.getImg()).diskCacheStrategy(DiskCacheStrategy.ALL).fitCenter().into(topImg);
         topTitle.setText(data.getT());
         topDate.setText(data.getPtime());
         topLen.setText(data.getLen());

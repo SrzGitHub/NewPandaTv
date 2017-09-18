@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class DonAdapter extends AbsAdapter<DonBean.VideoBean> {
         TextView donTitle = (TextView) holder.getView(R.id.pandaLiveTitle);
         TextView donDate = (TextView) holder.getView(R.id.pandaLiveDate);
 
-        Glide.with(App.mContext).load(data.getImg()).fitCenter().into(donImg);
+        Glide.with(App.mContext).load(data.getImg()).diskCacheStrategy(DiskCacheStrategy.ALL).fitCenter().into(donImg);
         donDate.setText(data.getPtime());
         donLen.setText(data.getLen());
         donTitle.setText(data.getT());

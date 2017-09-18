@@ -71,7 +71,7 @@ public class VideoActivity extends AppCompatActivity implements VideoActivityMod
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
-        setContentView(R.layout.activity_video);
+        setContentView(R.layout.activity_svideo);
         ButterKnife.bind(this);
 
         new VideoActivityModelPresenter(this);
@@ -139,7 +139,7 @@ public class VideoActivity extends AppCompatActivity implements VideoActivityMod
         sqlBeansDao.insert(sqlBeans);
 
         Log.e("TAG", "setResult: " + urls);
-        videoJP.setUp(urls, title);
+        videoJP.setUp(urls,title);
 
         shareImg.setOnClickListener(new View.OnClickListener() {
             @Override
