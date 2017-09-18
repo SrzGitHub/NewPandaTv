@@ -4,49 +4,80 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/lavender"
+    android:orientation="vertical"
     tools:context="co.com.newpandatv.view.activity.BillowingbottomActivity">
-<fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
-    android:layout_width="match_parent"
-    android:layout_height="200dp">
 
-</fm.jiecao.jcvideoplayer_lib.JCVideoPlayer>
-
-    <TextView
-        android:layout_marginLeft="10dp"
-        android:background="@color/color_text_selected"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="首播时间"/>
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/fanhui_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/fenlei_fanhui" />
+        <TextView
+            android:id="@+id/name_b"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="100dp" />
+    </LinearLayout>
+
+    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
+        android:id="@+id/jiecao_b"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"></fm.jiecao.jcvideoplayer_lib.JCVideoPlayer>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="17dp">
+        android:layout_height="wrap_content"
+        android:background="@color/color_text_selected">
+
         <TextView
-            android:background="@color/color_text_selected"
-            android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="栏目介绍"/>
+            android:layout_marginLeft="10dp"
+            android:background="@color/color_text_selected"
+            android:text="首播时间:"
+            android:textStyle="bold"
+            android:id="@+id/textView2" />
 
         <ImageView
             android:id="@+id/butImg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity=""
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/com_facebook_tooltip_blue_bottomnub"
+            android:layout_below="@+id/textView2"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="栏目介绍"
+            android:textSize="10sp"
+            android:layout_below="@+id/textView2"
+            android:layout_alignLeft="@+id/textView2"
+            android:layout_alignStart="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="dsfdsfsdf"
+            android:visibility="gone"
+            android:textStyle="bold"
+            android:layout_below="@+id/textView"
+            android:layout_alignLeft="@+id/textView"
+            android:layout_alignStart="@+id/textView" />
+
     </RelativeLayout>
-<TextView
-    android:id="@+id/textName"
-    android:text="dsfdsfsdf"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    />
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -63,40 +94,59 @@
             android:layout_marginLeft="10dp"
             android:gravity="center_vertical"
             android:text="高清完整"
-            android:textSize="20sp"
             android:textStyle="bold" />
-
-
 
     </RelativeLayout>
 
-    <co.com.newpandatv.view.listview.MyListView
-        android:id="@+id/mBillowing_bottom_listview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></co.com.newpandatv.view.listview.MyListView>
-
-
-
 
     <LinearLayout
-        android:gravity="bottom"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/color_text_selected">
-        <Button
-            android:id="@+id/mShoucang"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="收藏"/>
-        <Button
-            android:id="@+id/mFenxiang"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/swipe_b">
+        <co.com.newpandatv.view.listview.MyListView
+            android:id="@+id/mBillowing_bottom_listview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_width="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:divider="#000"
+            android:dividerHeight="1px"
+            android:background="@color/color_text_selected">
+        </co.com.newpandatv.view.listview.MyListView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <LinearLayout
+            android:background="@color/color_text_selected"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="分享"/>
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/shoucang_b"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@mipmap/collect_no" />
+
+            <ImageView
+                android:id="@+id/fenxiang_b"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:src="@mipmap/pe_share_img" />
+
+        </LinearLayout>
 
     </LinearLayout>
+
 
 </LinearLayout>

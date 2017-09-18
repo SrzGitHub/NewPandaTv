@@ -32,7 +32,7 @@ public class PandaArchivesAdapter extends AbsAdapter<PandaArchivesBean.VideoBean
         TextView pandaLiveLen = (TextView) holder.getView(R.id.pandaLiveLen);
 
 
-        Glide.with(App.getContext()).load(data.getImg()).fitCenter().into(pandaLiveImg);
+        Glide.with(App.mContext).load(data.getImg()).fitCenter().into(pandaLiveImg);
         pandaLiveTitle.setText(data.getT());
         pandaLiveDate.setText(data.getPtime());
         pandaLiveLen.setText(data.getLen());

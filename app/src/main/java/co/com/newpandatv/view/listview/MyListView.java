@@ -108,7 +108,7 @@ public class MyListView extends ListView implements OnScrollListener {
 
 
     //设置加载更多监听
-    public void setLoadMoreListener(LoadMoreListener listener) {
+        public void setLoadMoreListener(LoadMoreListener listener) {
         loadMoreListener = listener;
         addFooterView(loadingMoreFooter);
         loadingMoreFooter.setGone();

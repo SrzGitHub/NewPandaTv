@@ -8,7 +8,6 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import co.com.newpandatv.R;
 import co.com.newpandatv.app.App;
 import co.com.newpandatv.model.entity.TopBean;
 
@@ -37,7 +36,7 @@ public class TopAdapter extends AbsAdapter<TopBean.VideoBean> {
         TextView topLen = (TextView) holder.getView(pandaLiveLen);
 
 
-        Glide.with(App.getContext()).load(data.getImg()).fitCenter().into(topImg);
+        Glide.with(App.mContext).load(data.getImg()).fitCenter().into(topImg);
         topTitle.setText(data.getT());
         topDate.setText(data.getPtime());
         topLen.setText(data.getLen());

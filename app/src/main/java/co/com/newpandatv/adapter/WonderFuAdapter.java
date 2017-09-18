@@ -1,8 +1,6 @@
 package co.com.newpandatv.adapter;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -10,7 +8,6 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import co.com.newpandatv.R;
 import co.com.newpandatv.app.App;
 import co.com.newpandatv.model.entity.WonderfuMomentBean;
 
@@ -42,7 +39,7 @@ public class WonderFuAdapter extends AbsAdapter<WonderfuMomentBean.VideoBean> {
         TextView derLen = (TextView) holder.getView(pandaLiveLen);
 
 
-        Glide.with(App.getContext()).load(data.getImg()).fitCenter().into(derImg);
+        Glide.with(App.mContext).load(data.getImg()).fitCenter().into(derImg);
         derTitle.setText(data.getT());
         derDate.setText(data.getPtime());
         derLen.setText(data.getLen());

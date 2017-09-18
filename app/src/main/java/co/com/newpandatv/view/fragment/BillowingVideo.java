@@ -2,6 +2,7 @@ package co.com.newpandatv.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,8 @@ public class BillowingVideo extends BaseFragment implements BilowingVideoContrac
     Unbinder unbinder;
     @BindView(R.id.billowListView)
     MyListView billowListView;
+    @BindView(R.id.swipe)
+    SwipeRefreshLayout swipe;
     private List<BillowingVideoBean.ListBean> mList = new ArrayList();
 
     private BillowingAdapter billowingAdapter;
@@ -49,6 +52,9 @@ public class BillowingVideo extends BaseFragment implements BilowingVideoContrac
     private TextView addTitle;
     private String pid;
     private String image;
+
+    int page;
+
 
     @Override
     protected int getLayoutId() {
@@ -60,7 +66,7 @@ public class BillowingVideo extends BaseFragment implements BilowingVideoContrac
 
 //        view = LayoutInflater.from(App.context).inflate(R.layout.imglayout,null);
 //        view = LayoutInflater.from(App.context).inflate(R.layout.imglayout,null);
-        billowListView.addHeaderView(View.inflate(App.context,R.layout.imglayout,null));
+        billowListView.addHeaderView(View.inflate(App.context, R.layout.imglayout, null));
         addImg = view.findViewById(R.id.addImg);
         addTitle = view.findViewById(R.id.addTitle);
 
@@ -69,7 +75,7 @@ public class BillowingVideo extends BaseFragment implements BilowingVideoContrac
     @Override
     protected void loadData() {
 
-       presenter.start();
+        presenter.start();
 
     }
 
@@ -108,14 +114,16 @@ public class BillowingVideo extends BaseFragment implements BilowingVideoContrac
             }
         });
 
-        billowingAdapter = new BillowingAdapter(App.getContext(),R.layout.billow_item,mList);
+        billowingAdapter = new BillowingAdapter(App.getContext(), R.layout.billow_item, mList);
         billowListView.setAdapter(billowingAdapter);
         billowListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 Intent intent = new Intent(App.context, BillowingbottomActivity.class);
-//                intent.putExtra("vid",mList.get(i).get
+
+                intent.putExtra("id", mList.get(i - 1).getId());
+
                 startActivity(intent);
             }
         });
@@ -125,10 +133,8 @@ public class BillowingVideo extends BaseFragment implements BilowingVideoContrac
 
     @Override
     public void showMessage(String msg) {
-
         Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
-
 
 
     @Override
@@ -149,4 +155,5 @@ public class BillowingVideo extends BaseFragment implements BilowingVideoContrac
         super.onDestroyView();
         unbinder.unbind();
     }
+
 }

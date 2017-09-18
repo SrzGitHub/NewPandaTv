@@ -8,7 +8,6 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import co.com.newpandatv.R;
 import co.com.newpandatv.app.App;
 import co.com.newpandatv.model.entity.SpecialBean;
 
@@ -37,7 +36,7 @@ public class SpecialAdapter extends AbsAdapter<SpecialBean.VideoBean> {
         TextView speLen = (TextView) holder.getView(pandaLiveLen);
 
 
-        Glide.with(App.getContext()).load(data.getImg()).fitCenter().into(soeImg);
+        Glide.with(App.mContext).load(data.getImg()).fitCenter().into(soeImg);
         speTitle.setText(data.getT());
         speDate.setText(data.getPtime());
         speLen.setText(data.getLen());
