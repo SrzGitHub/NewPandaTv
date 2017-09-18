@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+
+   <ImageButton
+       android:id="@+id/image_goback"
+       android:layout_width="50dp"
+       android:layout_height="50dp"
+       android:background="#00ffffff"
+       android:src="@mipmap/personal_back_img" />
+
+
+   <fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/jiecaovedio"
+       android:layout_alignParentTop="true"
+       android:layout_alignParentLeft="true"
+       android:layout_alignParentStart="true"></fm.jiecao.jcvideoplayer_lib.JCVideoPlayer>
+
+   <LinearLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:background="#00ffffff"
+       android:layout_alignParentRight="true"
+       android:layout_alignParentTop="true">
+      <CheckBox
+          android:id="@+id/image_shoucang"
+          android:layout_width="50dp"
+          android:layout_height="50dp"
+          android:background="@drawable/shoucang"
+          android:button="@null"
+          />
+
+      <CheckBox
+          android:id="@+id/image_share"
+          android:layout_width="50dp"
+          android:layout_height="50dp"
+
+          android:background="@mipmap/share"
+          android:button="@null" />
+   </LinearLayout>
+   
+</RelativeLayout>

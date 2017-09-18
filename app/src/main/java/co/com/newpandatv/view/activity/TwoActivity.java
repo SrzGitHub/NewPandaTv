@@ -23,6 +23,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.demo.view.fragment.PandaBroadcast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -34,7 +35,6 @@ import co.com.newpandatv.module.home.HomeFragment;
 import co.com.newpandatv.module.home.HomePresenter;
 import co.com.newpandatv.view.fragment.BillowingVideo;
 import co.com.newpandatv.view.fragment.LiveChina;
-import co.com.newpandatv.view.fragment.PandaBroadcast;
 import co.com.newpandatv.view.fragment.PandaLive;
 
 public class TwoActivity extends BaseActivity {
