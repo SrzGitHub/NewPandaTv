@@ -71,7 +71,7 @@ public class VideoActivity extends AppCompatActivity implements VideoActivityMod
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
-        setContentView(R.layout.activity_video);
+        setContentView(R.layout.activity_svideo);
         ButterKnife.bind(this);
 
         new VideoActivityModelPresenter(this);
