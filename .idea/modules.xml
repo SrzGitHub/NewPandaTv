@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/LYXNewPandaTv.iml" filepath="$PROJECT_DIR$/LYXNewPandaTv.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyPandaTv.iml" filepath="$PROJECT_DIR$/MyPandaTv.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyPandaTvNew.iml" filepath="$PROJECT_DIR$/MyPandaTvNew.iml" />
       <module fileurl="file://$PROJECT_DIR$/NewPandaTv.iml" filepath="$PROJECT_DIR$/NewPandaTv.iml" />
       <module fileurl="file://$PROJECT_DIR$/SEZNewPandaTv.iml" filepath="$PROJECT_DIR$/SEZNewPandaTv.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
