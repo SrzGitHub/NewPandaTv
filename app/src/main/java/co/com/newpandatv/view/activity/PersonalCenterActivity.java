@@ -91,6 +91,7 @@ public class PersonalCenterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_center);
         ButterKnife.bind(this);
+
         share_media = (SHARE_MEDIA) getIntent().getSerializableExtra("platforms");
         UMShareAPI.get(PersonalCenterActivity.this).getPlatformInfo(PersonalCenterActivity.this,
                 share_media, authlistener);

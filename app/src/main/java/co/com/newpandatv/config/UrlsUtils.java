@@ -58,7 +58,8 @@ public class UrlsUtils {
     //首页互动
     public static final String HUDONG=BASEURL+"PAGE14501767715521482/index.json";
     public static final String LIVECHINA=BASEURL+"PAGE14501775094142282/index.json";
-
+    //版本更新
+    public static final String VERSION = "http://115.182.9.124/index.php?action=release-GetNewVersions&applyName=1426217325";
 
     public static final String PANDALIVES ="http://vdn.live.cntv.cn/api2/live.do?channel=pa://cctv_p2p_hd"+12+"&amp;client=androidapp";
 

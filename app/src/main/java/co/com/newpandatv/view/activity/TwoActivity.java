@@ -79,6 +79,13 @@ public class TwoActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+
+        /*UpdateAppUtils.from(this)
+                .serverVersionCode(2)  //服务器versionCode
+                .serverVersionName("2.0") //服务器versionName
+                .apkPath("http://123.206.14.104:8080/FileUploadDemo/files/wxl.apk") //最新apk下载地址
+                .update();*/
+
         //获取权限
         checkPermission();
         twoTitle.setVisibility(View.INVISIBLE);
