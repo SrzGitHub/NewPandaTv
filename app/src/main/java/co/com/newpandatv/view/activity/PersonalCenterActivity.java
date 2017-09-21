@@ -108,6 +108,7 @@ public class PersonalCenterActivity extends AppCompatActivity {
                switch (USER){
                    case 0:
                        USER =1;
+                       Toast.makeText(App.context,"请先授权",Toast.LENGTH_SHORT).show();
                        startActivity(new Intent(PersonalCenterActivity.this, AutoActivity.class));
 
                        break;
@@ -116,10 +117,7 @@ public class PersonalCenterActivity extends AppCompatActivity {
                        startActivity(new Intent(PersonalCenterActivity.this, UserActivity.class));
 
                        break;
-                   /*case 2:
-                       USER =1;
 
-                       break;*/
                }
 
 

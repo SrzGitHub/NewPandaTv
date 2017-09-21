@@ -1,6 +1,7 @@
 package co.com.newpandatv.view.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.com.newpandatv.R;
 import co.com.newpandatv.config.GlideCacheUtil;
+import co.com.newpandatv.view.activity.setup.FeedbackActivity;
+import co.com.newpandatv.view.activity.setup.GYActivity;
 
 public class SetUpActivity extends AppCompatActivity {
 
@@ -73,6 +76,7 @@ public class SetUpActivity extends AppCompatActivity {
                         setUpT.setImageResource(R.mipmap.switch_open);
                         break;
                 }
+
                 break;
             case R.id.setUp_X:
                 switch (B){
@@ -114,7 +118,7 @@ public class SetUpActivity extends AppCompatActivity {
 
                 break;
             case R.id.setUp_F:
-                Toast.makeText(this,"不想帮助你们！",Toast.LENGTH_SHORT).show();
+           startActivity(new Intent(SetUpActivity.this, FeedbackActivity.class));
                 break;
             case R.id.setUp_C:
                 Toast.makeText(this,"已经是最新版本！",Toast.LENGTH_SHORT).show();
@@ -123,7 +127,7 @@ public class SetUpActivity extends AppCompatActivity {
                 Toast.makeText(this,"不给好评砍死你！",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.setUp_G:
-                Toast.makeText(this,"不让看！",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(SetUpActivity.this, GYActivity.class));
                 break;
         }
     }

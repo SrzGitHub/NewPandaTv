@@ -1,5 +1,6 @@
 package co.com.newpandatv.view.fragment.pandalive_fragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -50,6 +51,7 @@ public class PandaThoseThings extends BaseFragment implements PandaThoseThingsMo
     AbsAdapter<PandaThoseThingsBean.VideoBean> absAdapter;
     @BindView(R.id.pandaPfl)
     PtrFrameLayout pandaPfl;
+    private ProgressDialog dialog;
 
 
     @Override
@@ -64,7 +66,6 @@ public class PandaThoseThings extends BaseFragment implements PandaThoseThingsMo
 
     @Override
     protected void loadData() {
-
 
 
         thosePresnter.start();
@@ -108,12 +109,10 @@ public class PandaThoseThings extends BaseFragment implements PandaThoseThingsMo
 
     @Override
     public void showProgressDialog() {
-
     }
 
     @Override
     public void dismissDialog() {
-
     }
 
     @Override

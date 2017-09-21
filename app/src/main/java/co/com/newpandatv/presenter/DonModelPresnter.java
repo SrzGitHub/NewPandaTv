@@ -27,12 +27,10 @@ public class DonModelPresnter implements DonModelContract.DonPresnter {
 
     @Override
     public void start() {
-        conTractView.showProgressDialog();
         donModel.getDonModel(new MyNetWorkCallback<DonBean>() {
             @Override
             public void onSuccess(DonBean donBean) {
                 conTractView.setResult(donBean);
-                conTractView.dismissDialog();
             }
 
             @Override

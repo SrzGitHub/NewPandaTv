@@ -7,7 +7,9 @@ import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -88,7 +90,7 @@ public class PDBCActivity extends BaseActivity {
                                 try {
                                     url = new URL(s);
                                     drawable = Drawable.createFromStream(url.openStream(), null);
-                                    drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+                                    drawable.setBounds(0, 0, drawable.getIntrinsicWidth()*5, drawable.getIntrinsicHeight()*5);
 
                                 } catch (MalformedURLException e) {
                                     e.printStackTrace();

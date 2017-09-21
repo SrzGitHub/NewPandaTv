@@ -25,12 +25,10 @@ public class SpecialModelPresenter implements SpecialModelContract.SpeciaPresnte
     }
     @Override
     public void start() {
-        specialModelContractView.showProgressDialog();
         specialModel.getSpecialModel(new MyNetWorkCallback<SpecialBean>() {
             @Override
             public void onSuccess(SpecialBean specialBean) {
                 specialModelContractView.setResult(specialBean);
-                specialModelContractView.dismissDialog();
             }
 
             @Override

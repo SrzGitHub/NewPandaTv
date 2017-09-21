@@ -18,4 +18,9 @@
 
     </style>
 
+    <style name="check_selector" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/check_selector</item>
+    </style>
+
+
 </resources>

@@ -27,12 +27,10 @@ public class PandaArchivesModelPresenter implements PandaArchivesModeContract.Pa
 
     @Override
     public void start() {
-        pandaArchivesView.showProgressDialog();
         pandaArchivesModel.getPandaArchivesModel(new MyNetWorkCallback<PandaArchivesBean>() {
             @Override
             public void onSuccess(PandaArchivesBean pandaArchivesBean) {
                 pandaArchivesView.setResult(pandaArchivesBean);
-                pandaArchivesView.dismissDialog();
             }
 
             @Override

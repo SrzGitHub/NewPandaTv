@@ -46,6 +46,7 @@ public class Panda_Top_List extends BaseFragment implements TopContract.View {
     TopAdapter topAdapter;
     @BindView(R.id.pandaPfl)
     PtrFrameLayout pandaPfl;
+    private ProgressDialog dialog;
 
 
     @Override

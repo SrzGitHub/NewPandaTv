@@ -23,8 +23,12 @@ public class UrlsUtils {
     public static final String PANDALIVEMULTI = BASEURL + "PAGE14501769230331752/PAGE14501787896813312/index.json";
     //列表
     public static final String PAGELIST = BASEURL + "PAGE14501786751053212/index.json";
+
     //精彩一刻
-    public static final String Wonderful = "http://api.cntv.cn/video/videolistById?vsid=VSET100167216881&n=7&serviceId=panda&o=desc&of=time&p=";
+    public static final String Wonderful = "http://api.cntv.cn/video/videolistById?" +
+            "vsid=VSET100167216881&n=7&serviceId=panda&o=desc&of=time&p=";
+
+
     //当熊不让
     public static final String PANDA = "http://api.cntv.cn/video/videolistById?vsid=VSET100332640004&serviceId=panda&n=7&o=desc&of=time&p=";
     //超萌滚滚秀

@@ -87,6 +87,7 @@ public class LiveFrgment extends BaseFragment implements LiveFrgmentModelContrac
         but2 = view.findViewById(R.id.but2);
 
          MultiViewLiveBroadcast broadcasta = new MultiViewLiveBroadcast();
+
         new MultioLeModelPresnter(broadcasta);
         FragmentManager manager = getActivity().getSupportFragmentManager();
          FragmentTransaction transaction = manager.beginTransaction();
@@ -111,9 +112,9 @@ public class LiveFrgment extends BaseFragment implements LiveFrgmentModelContrac
         });
 
         but2.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                liveFment.setItemsCanFocus(true);
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction1 = manager.beginTransaction();
                 shouFragMent(transaction1);

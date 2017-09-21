@@ -24,12 +24,10 @@ public class MultioLeModelPresnter implements MultioLeModelContract.MultioLePres
     }
     @Override
     public void start() {
-        multioLeModelContractView.showProgressDialog();
         multioLeModel.getMultioLe(new MyNetWorkCallback<MultioLeBeans>() {
             @Override
             public void onSuccess(MultioLeBeans multioLeBeans) {
                 multioLeModelContractView.setResult(multioLeBeans);
-                multioLeModelContractView.dismissDialog();
             }
 
             @Override

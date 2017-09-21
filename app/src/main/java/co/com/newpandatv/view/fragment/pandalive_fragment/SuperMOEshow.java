@@ -50,7 +50,6 @@ public class SuperMOEshow extends BaseFragment implements SuperMOEshowContract.V
     PtrFrameLayout pandaPfl;
 
 
-
     @Override
     protected int getLayoutId() {
         return R.layout.pandalive_fragment_tab_page;
@@ -63,7 +62,6 @@ public class SuperMOEshow extends BaseFragment implements SuperMOEshowContract.V
 
     @Override
     protected void loadData() {
-
         superPresnter.start();
         initDate();
 
@@ -108,12 +106,10 @@ public class SuperMOEshow extends BaseFragment implements SuperMOEshowContract.V
 
 
 
-
     }
 
     @Override
     public void dismissDialog() {
-
     }
 
     @Override

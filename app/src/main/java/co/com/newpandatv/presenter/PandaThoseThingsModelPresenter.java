@@ -25,12 +25,10 @@ public class PandaThoseThingsModelPresenter implements PandaThoseThingsModelCont
     }
     @Override
     public void start() {
-        pandaThoseThingsModelContractView.showProgressDialog();
         pandaThoseThingsModel.getPandaThoseThings(new MyNetWorkCallback<PandaThoseThingsBean>() {
             @Override
             public void onSuccess(PandaThoseThingsBean pandaThoseThingsBean) {
                 pandaThoseThingsModelContractView.setResult(pandaThoseThingsBean);
-                pandaThoseThingsModelContractView.dismissDialog();
             }
 
             @Override

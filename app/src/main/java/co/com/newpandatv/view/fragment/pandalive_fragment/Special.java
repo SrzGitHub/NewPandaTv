@@ -69,7 +69,6 @@ public class Special extends BaseFragment implements SpecialModelContract.View {
 
     @Override
     protected void loadData() {
-
         speciaPresnter.start();
 
         initDate();
@@ -113,12 +112,10 @@ public class Special extends BaseFragment implements SpecialModelContract.View {
 
     @Override
     public void showProgressDialog() {
-
     }
 
     @Override
     public void dismissDialog() {
-
     }
 
     @Override

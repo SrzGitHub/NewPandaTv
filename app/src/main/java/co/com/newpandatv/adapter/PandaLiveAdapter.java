@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
-import static android.R.id.list;
 
 /**
  * Created by Administrator on 2017/9/12.

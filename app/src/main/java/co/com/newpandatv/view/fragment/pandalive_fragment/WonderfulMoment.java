@@ -72,8 +72,8 @@ public class WonderfulMoment extends BaseFragment implements WonderfulMomentCont
         dialog = new ProgressDialog(App.context);
         dialog.setMessage("正在加载");
 
-
         presenter.start();
+
         initDate();
     }
 
@@ -112,9 +112,6 @@ public class WonderfulMoment extends BaseFragment implements WonderfulMomentCont
     @Override
     protected void onShow() {
         super.onShow();
-
-
-
 
     }
 

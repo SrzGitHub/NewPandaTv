@@ -17,9 +17,12 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMVideo;
 
+import org.greenrobot.greendao.query.QueryBuilder;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,6 +38,8 @@ import co.com.newpandatv.model.entity.VideoBeans;
 import co.com.newpandatv.module.home.contract.VideoActivityModelContract;
 import co.com.newpandatv.presenter.VideoActivityModelPresenter;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+
+import static com.umeng.socialize.a.b.d.i;
 
 
 public class VideoActivity extends AppCompatActivity implements VideoActivityModelContract.View {
@@ -127,25 +132,16 @@ public class VideoActivity extends AppCompatActivity implements VideoActivityMod
         urls = videoBeans.getVideo().getChapters().get(0).getUrl();
         image = videoBeans.getVideo().getChapters().get(0).getImage();
         Log.e("TAG", "setResult: image："+ image);
-        Date date=new Date();
-        DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String time=format.format(date);
-        sqlBeans.setDaoUrl(urls);
-        sqlBeans.setUrlImg(urlIg);
-        sqlBeans.setUrlData(time);
-        sqlBeans.setUrlLen(len);
-        sqlBeans.setUrlTitle(title);
-        sqlBeans.setId(null);
-        sqlBeansDao.insert(sqlBeans);
 
         Log.e("TAG", "setResult: " + urls);
+
         videoJP.setUp(urls,title);
 
         shareImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UMImage imgs = new UMImage(App.getContext(), image);
-                UMVideo video = new UMVideo(urls);
+                UMImage imgs = new UMImage(App.getContext(), image);//设置缩略图
+                UMVideo video = new UMVideo(urls);//设置 视频地址
                 video.setTitle(title);//视频的标题
                 video.setThumb(imgs);//视频的缩略图
                 video.setDescription("PandaChannel");//视频的描述
@@ -167,12 +163,32 @@ public class VideoActivity extends AppCompatActivity implements VideoActivityMod
                        VIDEO=1;
                        collectionlImg.setImageResource(R.mipmap.collect_yes);
                        Toast.makeText(VideoActivity.this,"收藏成功",Toast.LENGTH_SHORT).show();
-
+                       Date date=new Date();
+                       DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                       String time=format.format(date);
+                       sqlBeans.setDaoUrl(urls);
+                       sqlBeans.setUrlImg(urlIg);
+                       sqlBeans.setUrlData(time);
+                       sqlBeans.setUrlLen(len);
+                       sqlBeans.setUrlTitle(title);
+                       sqlBeans.setId(null);
+                       sqlBeansDao.insert(sqlBeans);
                        break;
                    case 1:
                        VIDEO=0;
                        collectionlImg.setImageResource(R.mipmap.collect_no);
                        Toast.makeText(VideoActivity.this,"取消收藏",Toast.LENGTH_SHORT).show();
+                       SQLiteDatabase r = DaoUtil.getIn(VideoActivity.this).getR();
+                       DaoMaster daoMaster = new DaoMaster(r);
+                       DaoSession daoSession = daoMaster.newSession();
+                       SQLBeansDao sqlBeansDao = daoSession.getSQLBeansDao();
+                       List<SQLBeans> list = sqlBeansDao.queryBuilder().build().list();
+                       sqlBeansDao.delete(list.get(1));
+                       List<SQLBeans> list1 = sqlBeansDao.queryBuilder().build().list();
+                       list.clear();
+                       list.addAll(list1);
+
+
 
                        break;
                }

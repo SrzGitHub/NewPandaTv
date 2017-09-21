@@ -62,6 +62,25 @@ public class MutioViewAdapter extends RecyclerView.Adapter<MutioViewAdapter.View
             twoImg = itemView.findViewById(R.id.twoImg);
             twoTitle =itemView.findViewById(R.id.twoTitle);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickListener.onclicklistener(getAdapterPosition());
+                }
+            });
         }
     }
+
+    private static OnClickListener onClickListener;
+
+    public interface OnClickListener {
+        void onclicklistener(int pos);
+    }
+
+    public void setOnClickLisener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
+
+
+
 }

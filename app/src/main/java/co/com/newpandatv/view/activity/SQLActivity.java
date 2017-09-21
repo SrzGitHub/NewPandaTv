@@ -40,7 +40,7 @@ public class SQLActivity extends AppCompatActivity {
     private DaoSession daoSession;
     private SQLBeansDao sqlBeansDao;
      List<SQLBeans> list;
-
+    private String title;
 
 
     @Override
@@ -48,7 +48,7 @@ public class SQLActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sql);
         ButterKnife.bind(this);
-        String title = getIntent().getStringExtra("title");
+        title = getIntent().getStringExtra("title");
         mTitles.setText(title);
 
         r = DaoUtil.getIn(this).getR();
@@ -74,7 +74,7 @@ public class SQLActivity extends AppCompatActivity {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(SQLActivity.this);
                 //设置标题
-                builder.setMessage("是否删除数据库?"); //设置内容
+                builder.setMessage("是否删除"+title); //设置内容
                 builder.setIcon(R.mipmap.ic_launcher);//设置图标，图片id即可
                 builder.setPositiveButton("确定", new DialogInterface.OnClickListener() { //设置确定按钮
                     @Override

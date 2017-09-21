@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CCCCCC">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/biz_audio_progress_first"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_height="wrap_content">
+
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="1"
+        android:id="@+id/one_GN"
+        android:text="功能异常"
+        android:checked="false"
+        style="@style/check_selector"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:layout_weight="1"
+        android:checked="false"
+        android:text="内容问题"
+        android:id="@+id/one_NR"
+        style="@style/check_selector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:text="界面优化"
+        android:id="@+id/one_YH"
+        android:layout_weight="1"
+        style="@style/check_selector"
+        android:checked="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/randio_two"
+        android:layout_marginRight="10dp"
+        android:background="@color/biz_audio_progress_first"
+        android:layout_marginLeft="10dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <CheckBox
+            android:id="@+id/two_SP"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:text="视频播放"
+            style="@style/check_selector"
+            android:checked="false"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:layout_weight="1"
+            android:text="显示异常"
+            android:checked="false"
+            android:id="@+id/two_YC"
+            style="@style/check_selector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:text="其他建议"
+            style="@style/check_selector"
+            android:id="@+id/two_JY"
+            android:layout_weight="1"
+            android:checked="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/YJ"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginLeft="10dp"
+        android:gravity="top"
+        android:hint="请留下您的宝贵意见"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/biz_audio_progress_first"/>
+
+<EditText
+    android:id="@+id/YX"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:hint="请输入您的邮箱，方便我们及时给您回复"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="20dp"
+    android:background="@color/biz_audio_progress_first"/>
+
+<Button
+    android:id="@+id/but_TJ"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="提交"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginLeft="10dp"
+    android:textColor="@color/biz_audio_progress_first"
+    android:background="@drawable/bt_shape"
+    />
+
+
+</LinearLayout>

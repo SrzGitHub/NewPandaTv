@@ -27,12 +27,10 @@ public class OriginalNewsModelPresenter implements OriginalNewsModelContract.OrN
 
     @Override
     public void start() {
-        originalNewsModelContractView.showProgressDialog();
     originalNewsModel.getOriginalNews(new MyNetWorkCallback<OriginalNewsBean>() {
         @Override
         public void onSuccess(OriginalNewsBean originalNewsBean) {
             originalNewsModelContractView.setResult(originalNewsBean);
-            originalNewsModelContractView.dismissDialog();
         }
 
         @Override

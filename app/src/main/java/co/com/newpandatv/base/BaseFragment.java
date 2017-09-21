@@ -25,8 +25,10 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         init(view);
         loadData();
+
     }
 
     @Override
@@ -38,6 +40,17 @@ public abstract class BaseFragment extends Fragment {
             onHidden();
         }else {//当前Fragment处于显示状态
             onShow();
+
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (getUserVisibleHint()){
+            onShow();
+        }else {
+            onHidden();
         }
     }
 
@@ -48,7 +61,9 @@ public abstract class BaseFragment extends Fragment {
     //加载数据
     protected abstract void loadData();
     //该方法在Fragment可见时调用，可以在该方法中刷新数据
-    protected void onShow(){}
+    protected void onShow(){
+
+    }
     //该方法在Fragment隐藏时调用，可以做数据保存
     protected void onHidden(){}
 

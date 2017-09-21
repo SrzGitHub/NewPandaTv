@@ -27,12 +27,10 @@ public class LiveFrgmentModelPresenter implements LiveFrgmentModelContract.LiveP
 
     @Override
     public void start() {
-        liveFrgmentModelContractView.showProgressDialog();
         liveFrgmentMode.getLiveFrgment(new MyNetWorkCallback<PandaLiveBean>() {
             @Override
             public void onSuccess(PandaLiveBean pandaLiveBean) {
                 liveFrgmentModelContractView.setResult(pandaLiveBean);
-                liveFrgmentModelContractView.dismissDialog();
             }
 
             @Override

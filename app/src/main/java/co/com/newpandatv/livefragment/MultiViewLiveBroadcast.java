@@ -7,6 +7,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,11 +117,23 @@ public class MultiViewLiveBroadcast extends BaseFragment implements MultioLeMode
         mlbRlv.setLayoutManager(new GridLayoutManager(App.context, 3));
         mutioViewAdapter = new MutioViewAdapter(App.context,muList);
         mlbRlv.setAdapter(mutioViewAdapter);
+        mutioViewAdapter.setOnClickLisener(new MutioViewAdapter.OnClickListener() {
+            @Override
+            public void onclicklistener(int pos) {
+
+                Toast.makeText(App.mContext,"接口没找到！",Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
     }
+
+
 
     @Override
     public void showMessage(String msg) {
 
     }
+
+
 }

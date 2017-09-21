@@ -48,6 +48,7 @@ public class DontLetTheMale extends BaseFragment implements DonModelContract.Vie
     DonAdapter donAdapter;
     @BindView(R.id.pandaPfl)
     PtrFrameLayout pandaPfl;
+    private ProgressDialog dialog;
 
 
     @Override
