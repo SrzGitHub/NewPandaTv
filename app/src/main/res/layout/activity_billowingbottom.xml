@@ -10,21 +10,30 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        android:background="@color/colorPrimaryDark"
+        android:layout_height="45dp">
         <ImageView
+            android:layout_marginLeft="5dp"
             android:id="@+id/fanhui_b"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/fenlei_fanhui" />
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/personal_back_img"
+            />
         <TextView
-            android:id="@+id/name_b"
-            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            android:text="设置"
+            android:id="@+id/name_b"
+            android:layout_marginRight="30dp"
+            android:textColor="@color/biz_audio_progress_first"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="100dp" />
+            android:gravity="center"
+            />
+
+
     </LinearLayout>
 
     <fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
@@ -110,8 +119,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:id="@+id/ptrFrame_bb">
-            1;
-            .
+
         <co.com.newpandatv.view.listview.MyListView
             android:id="@+id/mBillowing_bottom_listview"
             android:layout_width="match_parent"

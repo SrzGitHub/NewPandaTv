@@ -25,7 +25,6 @@ public class PDBCPresenter implements PDBCContract.Presenter {
 
     @Override
     public void start() {
-        homeview.showProgressDialog();
         ipdbcModel.getPDNC(new MyNetWorkCallback<PandaBroadCastBean>() {
             @Override
             public void onSuccess(PandaBroadCastBean pandaBroadCastBean) {
@@ -36,7 +35,6 @@ public class PDBCPresenter implements PDBCContract.Presenter {
             @Override
             public void onError(int errorCode, String errorMsg) {
                 homeview.showMessage(errorMsg);
-                homeview.dismissDialog();
             }
         });
 

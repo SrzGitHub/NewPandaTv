@@ -114,13 +114,11 @@ public class PandaBroadcast extends BaseFragment implements PDBCContract.View {
 
     @Override
     public void showProgressDialog() {
-        dialog = new ProgressDialog(App.context);
-        dialog.show();
+
     }
 
     @Override
     public void dismissDialog() {
-        dialog.dismiss();
     }
 
     @Override
@@ -129,7 +127,7 @@ public class PandaBroadcast extends BaseFragment implements PDBCContract.View {
 
         if (imageurlll == null) {
             imageurlll = pdbcBean.getData().getBigImg().get(0).getImage();
-            view = LayoutInflater.from(App.context).inflate(R.layout.head_image, null);
+            view = LayoutInflater.from(App.mContext).inflate(R.layout.head_image, null);
             image = view.findViewById(R.id.head_image);
             Glide.with(App.context).load(imageurlll).into(image);
             listview.addHeaderView(view);
@@ -143,7 +141,7 @@ public class PandaBroadcast extends BaseFragment implements PDBCContract.View {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(App.context, PDBCVedioActivity.class);
+                Intent intent = new Intent(App.mContext, PDBCVedioActivity.class);
                 intent.putExtra("url1", pdbcBean.getData().getBigImg().get(0).getUrl());
                 intent.putExtra("title", pdbcBean.getData().getBigImg().get(0).getTitle());
                 intent.putExtra("id1", pdbcBean.getData().getBigImg().get(0).getId());
@@ -162,12 +160,12 @@ public class PandaBroadcast extends BaseFragment implements PDBCContract.View {
     public void setInfo(PandaBroadcastInfoBean pdbcInfoBean) {
         if (list == null) {
             list = (ArrayList<PandaBroadcastInfoBean.ListBean>) pdbcInfoBean.getList();
-            adapter = new MyAdapters(App.context, list);
+            adapter = new MyAdapters(App.mContext, list);
             listview.setAdapter(adapter);
             listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Intent intent = new Intent(App.context, PDBCActivity.class);
+                    Intent intent = new Intent(App.mContext, PDBCActivity.class);
                     PandaBroadcastInfoBean.ListBean listBean = list.get(i - 1);
                     intent.putExtra("list", listBean);
                     startActivity(intent);

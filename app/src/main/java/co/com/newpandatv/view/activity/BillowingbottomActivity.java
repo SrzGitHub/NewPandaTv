@@ -1,6 +1,5 @@
 package co.com.newpandatv.view.activity;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +18,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import co.com.newpandatv.R;
 import co.com.newpandatv.adapter.BillowingbottomAdapter;
 import co.com.newpandatv.app.App;
@@ -61,7 +61,8 @@ public class BillowingbottomActivity extends BaseActivity implements Billowingbo
     ImageView fenxiangB;
 
     int ABS = 0;
-    private List<BillowingItemBean.VideoBean> mList;
+    private List<BillowingItemBean.VideoBean> mList = new ArrayList<>();
+    ;
     private BillowingbottomAdapter adapter;
     private String desc;
     private String img;
@@ -95,11 +96,22 @@ public class BillowingbottomActivity extends BaseActivity implements Billowingbo
     @Override
     protected void initView() {
 
-        BillowingbottomContract.Presenter presenter = new BillowingbottomPresenter(this);
+        new BillowingbottomPresenter(this);
         presenter.start();
 
         //找到传递过来的这个id
         String id = getIntent().getStringExtra("id");
+        adapter = new BillowingbottomAdapter(this, R.layout.billowing_bottom_item, mList);
+        mBillowingBottomListview.setAdapter(adapter);
+        //点击条目播放视频
+        mBillowingBottomListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                //加载视频
+                jiecaoB.setUp("http://vod.cntv.lxdns.com/flash/mp4video62/TMS/2017/09/19/41f6ae4c38c7478baabcf0944e0f31d1_h264418000nero_aac32.mp4", name);
+            }
+        });
 
         //进行请求
         OkHttpUtils.getInstance().get("http://api.cntv.cn/video/videolistById?vsid=" + id + "&n=7&serviceId=panda&o=desc&of=time&p=", null, new MyNetWorkCallback<BillowingItemBean>() {
@@ -118,26 +130,12 @@ public class BillowingbottomActivity extends BaseActivity implements Billowingbo
 
                 //获得vsid
                 vsid = billowingItemBean.getVideo().get(0).getVsid();
-
+                adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onError(int errorCode, String errorMsg) {
                 Log.e("TAG", "请求失败" + errorMsg);
-            }
-        });
-
-
-        mList = new ArrayList<>();
-        adapter = new BillowingbottomAdapter(this, R.layout.billowing_bottom_item, mList);
-        mBillowingBottomListview.setAdapter(adapter);
-        //点击条目播放视频
-        mBillowingBottomListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                //加载视频
-                jiecaoB.setUp("http://vod.cntv.lxdns.com/flash/mp4video62/TMS/2017/09/19/41f6ae4c38c7478baabcf0944e0f31d1_h264418000nero_aac32.mp4", name);
             }
         });
 
@@ -233,21 +231,6 @@ public class BillowingbottomActivity extends BaseActivity implements Billowingbo
 
 
     @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus && Build.VERSION.SDK_INT >= 19) {
-            View decorView = getWindow().getDecorView();
-            decorView.setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-        }
-    }
-
-    @Override
     protected void onPause() {
         super.onPause();
         jiecaoB.releaseAllVideos();
@@ -261,4 +244,8 @@ public class BillowingbottomActivity extends BaseActivity implements Billowingbo
     }
 
 
+    @OnClick(R.id.fanhui_b)
+    public void onViewClicked() {
+        finish();
+    }
 }

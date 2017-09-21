@@ -26,14 +26,19 @@
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
         android:layout_weight="1" />
-
+<View
+    android:layout_width="match_parent"
+    android:layout_height="0.1dp"
+    android:background="#000"
+    />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+
         android:gravity="center"
         android:orientation="horizontal"
-        android:background="#cacaca">
+        android:background="@color/biz_audio_progress_first">
 
         <CheckBox
             android:id="@+id/image_shoucang"
