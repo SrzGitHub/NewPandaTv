@@ -126,6 +126,7 @@ public class MultiViewLiveBroadcast extends BaseFragment implements MultioLeMode
                 Intent intent = new Intent();
                 intent.putExtra("id",id);
                 intent.putExtra("tit",muList.get(pos).getTitle());
+                intent.putExtra("im",muList.get(pos).getImage());
                 intent.setAction("hello");
                 getActivity().sendBroadcast(intent);
 

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
@@ -39,6 +40,7 @@ import co.com.newpandatv.module.home.contract.VideoActivityModelContract;
 import co.com.newpandatv.presenter.VideoActivityModelPresenter;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
+import static co.com.newpandatv.R.id.liveJCV;
 import static com.umeng.socialize.a.b.d.i;
 
 
@@ -86,7 +88,7 @@ public class VideoActivity extends AppCompatActivity implements VideoActivityMod
         len = getIntent().getStringExtra("len");
         urlIg = getIntent().getStringExtra("urlIg");
         Log.e("TAG", "onCreate: "+urlIg);
-
+        Glide.with(App.mContext).load(urlIg).into(videoJP.ivThumb);
         w = DaoUtil.getIn(App.getContext()).getW();
         daoMaster = new DaoMaster(w);
         daoSession = daoMaster.newSession();
@@ -134,6 +136,7 @@ public class VideoActivity extends AppCompatActivity implements VideoActivityMod
         Log.e("TAG", "setResult: image："+ image);
 
         Log.e("TAG", "setResult: " + urls);
+        Glide.with(App.mContext).load(image).into(videoJP.ivThumb);
 
         videoJP.setUp(urls,title);
 

@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -18,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -42,6 +45,7 @@ import co.com.newpandatv.view.listview.MyListView;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 import static co.com.newpandatv.R.id.but2;
+import static co.com.newpandatv.R.id.liveJCV;
 import static co.com.newpandatv.config.UrlsUtils.PANDALIVES;
 
 /**
@@ -237,9 +241,7 @@ public class LiveFrgment extends BaseFragment implements LiveFrgmentModelContrac
         zkName.setText(pandaLiveBean.getLive().get(0).getBrief());
         String videoUrl="http://ipanda.vtime.cntv.cloudcdn.net/live/ipandahls_/index.m3u8?AUTH=aWlpj1YkabVe7sjrBFGz4qTnHjUNVRbYCytsKFFHkxMIs48f8K6oQFzcJu9o+PGbza+plcak5wb265g/m/TD+g==";
         liveJCV.setUp(videoUrl,pandaLiveBean.getLive().get(0).getTitle(),true);
-
-
-
+        Glide.with(App.mContext).load(pandaLiveBean.getLive().get(0).getImage()).into(liveJCV.ivThumb);
     }
 
     @Override
@@ -263,6 +265,9 @@ public class LiveFrgment extends BaseFragment implements LiveFrgmentModelContrac
         public void onReceive(Context context, Intent intent) {
             String id = intent.getStringExtra("id");
            String tit = intent.getStringExtra("tit");
+            String im = intent.getStringExtra("im");
+            Glide.with(App.mContext).load(im).into(liveJCV.ivThumb);
+
             pandaTitle.setText("[正在直播]" + tit);
 
             pandalives = "http://vdn.live.cntv.cn/api2/live.do?channel=pa://cctv_p2p_hd"+id+"&amp;client=androidapp";
