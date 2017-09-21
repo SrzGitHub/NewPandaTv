@@ -49,10 +49,8 @@ public class WonderfulMoment extends BaseFragment implements WonderfulMomentCont
     List<WonderfuMomentBean.VideoBean> pandaLiveList;
     WonderFuAdapter wonderFuAdapter;
 
-//    public static int PAGR = 1;
     @BindView(R.id.pandaPfl)
     PtrFrameLayout pandaPfl;
-    private ProgressDialog dialog;
 
     @Override
     protected int getLayoutId() {

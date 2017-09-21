@@ -100,7 +100,9 @@
             />
         <activity android:name=".view.activity.homeactivity.BigImgHomeActivity"
             android:screenOrientation="landscape"
-            ></activity>
+            >
+
+        </activity>
 
         <activity android:name=".view.activity.PDBCActivity" />
         <activity android:name=".view.activity.PDBCVedioActivity" />
@@ -108,6 +110,8 @@
         <activity android:name=".view.activity.setup.FeedbackActivity"
             android:windowSoftInputMode="adjustResize"
            />
+        <activity android:name=".view.activity.homeactivity.PandaliveActivity"
+            android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

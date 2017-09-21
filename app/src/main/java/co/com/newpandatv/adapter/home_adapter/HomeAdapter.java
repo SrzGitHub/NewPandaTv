@@ -182,6 +182,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
             List<PandaLiveLiuBean.DataBean.PandaliveBean.ListBeanX> lista = pandalive.getList();
             MyGlideAdapter myGlideAdapter = new MyGlideAdapter(context, lista);
             holder3.gridView.setAdapter(myGlideAdapter);
+
             holder3.gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

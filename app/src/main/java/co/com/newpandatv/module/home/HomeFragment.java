@@ -42,8 +42,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     private int refreshTime = 0;
     private int times = 0;
     PandaLiveLiuBean pan;
-    private ProgressDialog dialog;
-    private ProgressBar progressBar;
+
 
     @Override
     protected int getLayoutId() {
@@ -58,11 +57,8 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     @Override
     protected void loadData() {
 
-//        presenter.start();
-        dialog = new ProgressDialog(App.context);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setCancelable(true);
-        dialog.setCanceledOnTouchOutside(false);
+        presenter.start();
+
 
 
 
@@ -78,20 +74,20 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
                 //刷新数据
                 refreshTime ++;
                 times = 0;
-                dialog.show();
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         listHome.clear();
                         if(pan!=null){
                             for (int i = 0; i < 6; i++) {
-                                dialog.dismiss();
+
                                 listHome.add(pan.getData());
                             }
                         }else {
 //                            Toast.makeText(getContext(), "刷新失败", Toast.LENGTH_SHORT).show();
                             initOk();
-                            dialog.dismiss();
+
 
                         }
 //                        if(listHome.size()==0){
