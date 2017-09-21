@@ -1,6 +1,10 @@
 package co.com.newpandatv.view.fragment.pandalive_fragment;
 
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -29,12 +33,16 @@ import co.com.newpandatv.livefragment.MultiViewLiveBroadcast;
 import co.com.newpandatv.livefragment.WatchAndChat;
 import co.com.newpandatv.livefragment.contract_presenter.WatchAndChatModelPresenter;
 import co.com.newpandatv.model.entity.PandaLiveBean;
+import co.com.newpandatv.model.entity.ZBBean;
 import co.com.newpandatv.module.home.contract.LiveFrgmentModelContract;
+import co.com.newpandatv.net.OkHttpUtils;
+import co.com.newpandatv.net.callback.MyNetWorkCallback;
 import co.com.newpandatv.presenter.MultioLeModelPresnter;
 import co.com.newpandatv.view.listview.MyListView;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 import static co.com.newpandatv.R.id.but2;
+import static co.com.newpandatv.config.UrlsUtils.PANDALIVES;
 
 /**
  * Created by Administrator on 2017/9/12.
@@ -64,8 +72,7 @@ public class LiveFrgment extends BaseFragment implements LiveFrgmentModelContrac
     ArrayList<String> mLists = new ArrayList<>();
     LiveFragmentAdapter fragmentAdapter;
 
-
-    String ss = "http://117.23.6.54/vod.cntv.lxdns.com/flash/mp4video62/TMS/2017/09/15/11a617225f2f4c8683fe3443706d6550_h264418000nero_aac32.mp4?wshc_tag=0&wsts_tag=59bb7bfa&wsid_tag=6a254920&wsiphost=ipdbm";
+    private String pandalives;
     @BindView(R.id.liveFment)
     MyListView liveFment;
     Button but1;
@@ -79,6 +86,12 @@ public class LiveFrgment extends BaseFragment implements LiveFrgmentModelContrac
 
     @Override
     protected void init(View view) {
+        IntentFilter filter =new IntentFilter();
+        filter.addAction("hello");
+
+        Broadcast  broadcastss = new Broadcast();
+        getActivity().registerReceiver(broadcastss,filter);
+
 
         liveFment.addHeaderView(View.inflate(App.context, R.layout.live_item_add, null));
        zkName = view.findViewById(R.id.zkName);
@@ -137,6 +150,9 @@ public class LiveFrgment extends BaseFragment implements LiveFrgmentModelContrac
         for (int i = 0; i < 10; i++) {
             mLists.add("这是该隐藏的");
         }
+
+
+
         fragmentAdapter = new LiveFragmentAdapter(App.context,mLists);
         liveFment.setAdapter(fragmentAdapter);
         livePresnter.start();
@@ -218,10 +234,8 @@ public class LiveFrgment extends BaseFragment implements LiveFrgmentModelContrac
 
 
         pandaTitle.setText("[正在直播]" + pandaLiveBean.getLive().get(0).getTitle());
-
-        liveJCV.setUp(ss, "", true);
-
         zkName.setText(pandaLiveBean.getLive().get(0).getBrief());
+
 
     }
 
@@ -238,5 +252,33 @@ public class LiveFrgment extends BaseFragment implements LiveFrgmentModelContrac
         JCVideoPlayer.releaseAllVideos();
     }
 
+    class Broadcast extends BroadcastReceiver{
+
+
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String id = intent.getStringExtra("id");
+           String tit = intent.getStringExtra("tit");
+            pandaTitle.setText("[正在直播]" + tit);
+
+            pandalives = "http://vdn.live.cntv.cn/api2/live.do?channel=pa://cctv_p2p_hd"+id+"&amp;client=androidapp";
+             OkHttpUtils.getInstance().get(pandalives, null, new MyNetWorkCallback<ZBBean>() {
+                        @Override
+                        public void onSuccess(ZBBean zbBean) {
+                            String hls1 = zbBean.getHls_url().getHls1();
+
+                            liveJCV.setUp(hls1, "", true);
+
+                        }
+
+                        @Override
+                        public void onError(int errorCode, String errorMsg) {
+
+                        }
+                    });
+            Log.e("TAG", "onReceive: "+id);
+        }
+    }
 
 }

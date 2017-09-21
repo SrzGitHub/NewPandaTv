@@ -1,5 +1,6 @@
 package co.com.newpandatv.livefragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -121,7 +122,13 @@ public class MultiViewLiveBroadcast extends BaseFragment implements MultioLeMode
             @Override
             public void onclicklistener(int pos) {
 
-                Toast.makeText(App.mContext,"接口没找到！",Toast.LENGTH_SHORT).show();
+                String id = muList.get(pos).getId();
+                Intent intent = new Intent();
+                intent.putExtra("id",id);
+                intent.putExtra("tit",muList.get(pos).getTitle());
+                intent.setAction("hello");
+                getActivity().sendBroadcast(intent);
+
 
             }
         });

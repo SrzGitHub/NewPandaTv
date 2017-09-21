@@ -60,6 +60,8 @@ public class UrlsUtils {
     public static final String LIVECHINA=BASEURL+"PAGE14501775094142282/index.json";
 
 
+    public static final String PANDALIVES ="http://vdn.live.cntv.cn/api2/live.do?channel=pa://cctv_p2p_hd"+12+"&amp;client=androidapp";
+
     // 八达岭
     public static final String BA = "http://www.ipanda.com/kehuduan/liebiao/badaling/index.json";
 
