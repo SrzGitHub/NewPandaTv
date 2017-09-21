@@ -235,6 +235,9 @@ public class LiveFrgment extends BaseFragment implements LiveFrgmentModelContrac
 
         pandaTitle.setText("[正在直播]" + pandaLiveBean.getLive().get(0).getTitle());
         zkName.setText(pandaLiveBean.getLive().get(0).getBrief());
+        String videoUrl="http://ipanda.vtime.cntv.cloudcdn.net/live/ipandahls_/index.m3u8?AUTH=aWlpj1YkabVe7sjrBFGz4qTnHjUNVRbYCytsKFFHkxMIs48f8K6oQFzcJu9o+PGbza+plcak5wb265g/m/TD+g==";
+        liveJCV.setUp(videoUrl,pandaLiveBean.getLive().get(0).getTitle(),true);
+
 
 
     }
@@ -267,7 +270,7 @@ public class LiveFrgment extends BaseFragment implements LiveFrgmentModelContrac
                         @Override
                         public void onSuccess(ZBBean zbBean) {
                             String hls1 = zbBean.getHls_url().getHls1();
-
+                            Log.e("TAG", "onSuccess: "+hls1);
                             liveJCV.setUp(hls1, "", true);
 
                         }

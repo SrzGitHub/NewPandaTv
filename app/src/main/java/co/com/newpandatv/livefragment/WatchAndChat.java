@@ -46,9 +46,6 @@ public class WatchAndChat extends BaseFragment implements WatchAndChatModelContr
     List<WcheBean.DataBean.ContentBean> watList = new ArrayList<>();
     AbsAdapter<WcheBean.DataBean.ContentBean> watAbsAdapter;
 
-
-
-
     @Override
     protected int getLayoutId() {
         return R.layout.watchandchat;
