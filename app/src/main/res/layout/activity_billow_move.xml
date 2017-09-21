@@ -9,6 +9,39 @@
     <fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
         android:id="@+id/mVideoview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/shoucang_top"
+                android:layout_marginRight="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@mipmap/collect_no"
+                />
+            <ImageView
+                android:id="@+id/shareImg_top"
+                android:layout_marginRight="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/pe_share_img"
+                />
+            <ImageView
+                android:layout_marginRight="20dp"
+                android:id="@+id/listImg_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/play_fullscree_menu_true"
+                />
+
+        </LinearLayout>
+    </fm.jiecao.jcvideoplayer_lib.JCVideoPlayer>
 </LinearLayout>

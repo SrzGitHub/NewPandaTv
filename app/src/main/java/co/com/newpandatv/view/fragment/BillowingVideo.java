@@ -2,14 +2,13 @@ package co.com.newpandatv.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -28,6 +27,10 @@ import co.com.newpandatv.module.bilowing.BilowingVideoContract;
 import co.com.newpandatv.view.activity.Billow_moveActivity;
 import co.com.newpandatv.view.activity.BillowingbottomActivity;
 import co.com.newpandatv.view.listview.MyListView;
+import in.srain.cube.views.ptr.PtrClassicDefaultFooter;
+import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
+import in.srain.cube.views.ptr.PtrDefaultHandler2;
+import in.srain.cube.views.ptr.PtrFrameLayout;
 
 /**
  * Created by Administrator on 2017/9/12.
@@ -41,8 +44,9 @@ public class BillowingVideo extends BaseFragment implements BilowingVideoContrac
     Unbinder unbinder;
     @BindView(R.id.billowListView)
     MyListView billowListView;
-    @BindView(R.id.swipe)
-    SwipeRefreshLayout swipe;
+    @BindView(R.id.ptr_b)
+    PtrFrameLayout ptrB;
+
     private List<BillowingVideoBean.ListBean> mList = new ArrayList();
 
     private BillowingAdapter billowingAdapter;
@@ -52,8 +56,6 @@ public class BillowingVideo extends BaseFragment implements BilowingVideoContrac
     private TextView addTitle;
     private String pid;
     private String image;
-
-    int page;
 
 
     @Override
@@ -77,6 +79,38 @@ public class BillowingVideo extends BaseFragment implements BilowingVideoContrac
 
         presenter.start();
 
+        initDate();
+    }
+
+
+    private void initDate() {
+        PtrClassicDefaultHeader header = new PtrClassicDefaultHeader(App.context);
+        PtrClassicDefaultFooter footer = new PtrClassicDefaultFooter(App.context);
+
+        ptrB.addPtrUIHandler(header);
+        ptrB.addPtrUIHandler(footer);
+
+        ptrB.setHeaderView(header);
+        ptrB.setFooterView(footer);
+        ptrB.setPtrHandler(new PtrDefaultHandler2() {
+            @Override
+            public void onLoadMoreBegin(PtrFrameLayout frame) {
+                Log.e("TAG", "onLoadMoreBegin:开始 加载更多");
+                App.PAGER++;
+                presenter.start();
+                ptrB.refreshComplete();
+            }
+
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                Log.e("TAG", "onLoadMoreBegin: 开始加载");
+                App.PAGER = 1;
+                mList.clear();
+                presenter.start();
+                ptrB.refreshComplete();
+            }
+        });
+
     }
 
     @Override
@@ -99,6 +133,7 @@ public class BillowingVideo extends BaseFragment implements BilowingVideoContrac
         mList.addAll(billowing.getList());
 
         pid = billowing.getBigImg().get(0).getPid();
+
         image = billowing.getBigImg().get(0).getImage();
         Glide.with(App.mContext).load(image).fitCenter().into(addImg);
         addTitle.setText(billowing.getBigImg().get(0).getTitle());
@@ -122,7 +157,8 @@ public class BillowingVideo extends BaseFragment implements BilowingVideoContrac
 
                 Intent intent = new Intent(App.context, BillowingbottomActivity.class);
 
-                intent.putExtra("id", mList.get(i - 1).getId());
+                intent.putExtra("id", mList.get(i-1).getId());
+
 
                 startActivity(intent);
             }
@@ -133,7 +169,7 @@ public class BillowingVideo extends BaseFragment implements BilowingVideoContrac
 
     @Override
     public void showMessage(String msg) {
-        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+
     }
 
 

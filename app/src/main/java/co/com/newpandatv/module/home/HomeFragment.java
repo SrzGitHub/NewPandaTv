@@ -35,7 +35,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     HomeContract.Presenter presenter;
     @BindView(R.id.recy_home)
     XRecyclerView recy;
-    Unbinder unbinder;
+    Unbinder unbinder   ;
     List<PandaLiveLiuBean.DataBean> listHome=new ArrayList<>();
     private HomeAdapter homeAdapter;
 

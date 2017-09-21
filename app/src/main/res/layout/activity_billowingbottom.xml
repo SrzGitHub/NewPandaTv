@@ -103,25 +103,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <android.support.v4.widget.SwipeRefreshLayout
+        <in.srain.cube.views.ptr.PtrFrameLayout
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:id="@+id/swipe_b">
+            android:id="@+id/ptrFrame_bb">
+            1;
+            .
         <co.com.newpandatv.view.listview.MyListView
             android:id="@+id/mBillowing_bottom_listview"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_height="match_parent"
             android:divider="#000"
             android:dividerHeight="1px"
             android:background="@color/color_text_selected">
         </co.com.newpandatv.view.listview.MyListView>
-        </android.support.v4.widget.SwipeRefreshLayout>
+
+        </in.srain.cube.views.ptr.PtrFrameLayout>
 
         <LinearLayout
             android:background="@color/color_text_selected"
