@@ -7,9 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.bumptech.glide.Glide;
 import java.util.List;
-
 import co.com.newpandatv.R;
 import co.com.newpandatv.model.entity.TaiShanBean;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
@@ -40,7 +39,9 @@ public class MostAdapter extends RecyclerView.Adapter<MostAdapter.MyViewHolder> 
             holder.textView.setText("[正在直播]"+list.get(position).getTitle());
             holder.textView7.setText(list.get(position).getBrief());
             holder.textView7.setVisibility(View.GONE);
-            holder.videocontroller1.setUp("http://asp.cntv.lxdns.com/asp/hls/main/0303000a/3/default/b258dc46dd0044f9a66ab99345412822/main.m3u8?maxbr=4096",list.get(position).getTitle());
+            holder.livevideogao.setUp("http://3811.liveplay.myqcloud.com/live/m3u8/3811_channel454.m3u8?AUTH=UjGaAl/PgU0SwsC9CqaVQqbLd3XWYZ92XvcnsGQa3m0c8e533V5xNN7lTMWlZ7tOtJBbLwW9Bey0lSaZPzDZxg=="
+                    ,list.get(position).getTitle());
+            Glide.with(context).load(list.get(position).getImage()).into(holder.livevideogao.ivThumb);
             holder.imageView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -66,7 +67,7 @@ public class MostAdapter extends RecyclerView.Adapter<MostAdapter.MyViewHolder> 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
          private final View view;
-        private final JCVideoPlayer videocontroller1;
+        private final JCVideoPlayer livevideogao;
         private final ImageView imageView2;
         private final TextView textView;
         private final TextView textView7;
@@ -74,7 +75,7 @@ public class MostAdapter extends RecyclerView.Adapter<MostAdapter.MyViewHolder> 
         public MyViewHolder(View itemView) {
             super(itemView);
             view = itemView;
-            videocontroller1 = (JCVideoPlayer) itemView.findViewById(R.id.videocontroller1);
+            livevideogao =  (JCVideoPlayer)itemView.findViewById(R.id.livevideogao);
             imageView2 = (ImageView) itemView.findViewById(R.id.imageViewxx);
             textView = (TextView) itemView.findViewById(R.id.textView);
             textView7 = (TextView) itemView.findViewById(R.id.textView7);

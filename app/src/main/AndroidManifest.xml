@@ -39,7 +39,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.activity.TwoActivity"
-            android:launchMode="singleTask"/>
+            android:launchMode="singleTask"
+            />
         <activity
             android:name=".view.activity.VideoActivity"
             android:screenOrientation="landscape" />

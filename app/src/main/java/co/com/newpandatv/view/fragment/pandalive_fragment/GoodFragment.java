@@ -19,6 +19,7 @@ import java.util.List;
 
 import co.com.newpandatv.R;
 import co.com.newpandatv.adapter.MostAdapter;
+import co.com.newpandatv.model.entity.LiveChinabean;
 import co.com.newpandatv.model.entity.TaiShanBean;
 import co.com.newpandatv.net.OkHttpUtils;
 import co.com.newpandatv.net.callback.MyNetWorkCallback;
@@ -27,16 +28,19 @@ import co.com.newpandatv.net.callback.MyNetWorkCallback;
  * A simple {@link Fragment} subclass.
  */
 public class GoodFragment extends Fragment {
-//    private List<ZhiBoChina.TablistBean> list1=new ArrayList<>();
-
     private ListView listView;
     private List<TaiShanBean.LiveBean> list=new ArrayList<>();
+    private List<LiveChinabean.AlllistBean> alllistBeen=new ArrayList<>();
     private int position;
     private XRecyclerView recycler;
     private MostAdapter adapter;
     private int refreshTime = 0;
     private int times = 0;
     TaiShanBean liveBeans;
+   private String url;
+    public GoodFragment(String url) {
+        this.url=url;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,7 +48,7 @@ public class GoodFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_good3, container, false);
         recycler = (XRecyclerView) view.findViewById(R.id.recycler);
-        OkHttpUtils.getInstance().get("http://www.ipanda.com/kehuduan/liebiao/taishan/index.json", null, new MyNetWorkCallback<TaiShanBean>() {
+        OkHttpUtils.getInstance().get(url, null, new MyNetWorkCallback<TaiShanBean>() {
                 @Override
                 public void onSuccess(TaiShanBean liveBean) {
                     liveBeans=liveBean;
@@ -76,9 +80,7 @@ public class GoodFragment extends Fragment {
                     public void run() {
                         list.clear();
                         if(liveBeans!=null){
-
                                 list.addAll(liveBeans.getLive());
-
                         }else {
                             Toast.makeText(getContext(), "网络错误", Toast.LENGTH_SHORT).show();
                         }
@@ -87,14 +89,12 @@ public class GoodFragment extends Fragment {
                     }
                 }, 3000);            //refresh data here
             }
-
             @Override
             public void onLoadMore() {
                 //加载数据
                 recycler.setNoMore(true);
             }
         });
-
         recycler.refresh();
         return view;
     }

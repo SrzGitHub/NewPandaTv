@@ -89,17 +89,17 @@
                 android:textColor="#fff"
                 android:textSize="15dp" />
 
-            <co.com.newpandatv.view.gridview_my.My_GridView
+            <GridView
                 android:id="@+id/more_Switch_the_section_gridview"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="500dp"
                 android:layout_below="@id/Switch_the_section_gridviewP_text"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:numColumns="3"
                 android:verticalSpacing="20dp">
 
-            </co.com.newpandatv.view.gridview_my.My_GridView>
+            </GridView>
         </RelativeLayout>
 
     </ScrollView>
