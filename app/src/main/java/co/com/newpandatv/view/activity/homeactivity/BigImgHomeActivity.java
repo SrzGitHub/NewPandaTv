@@ -6,10 +6,12 @@ import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
@@ -27,6 +29,7 @@ import co.com.newpandatv.net.callback.MyNetWorkCallback;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 import static co.com.newpandatv.view.activity.VideoActivity.urls;
+import static com.umeng.qq.handler.a.o;
 
 public class BigImgHomeActivity extends AppCompatActivity {
 
@@ -43,6 +46,9 @@ public class BigImgHomeActivity extends AppCompatActivity {
     private String image;
     private String url1;
     int VIDEO=0;
+    private String bigimg;
+    private String bigimg_image;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +59,9 @@ public class BigImgHomeActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        String bigimg = intent.getStringExtra("bigimg");
-
+        bigimg = intent.getStringExtra("bigimg");
+        bigimg_image = intent.getStringExtra("bigimg_image");
+        Glide.with(App.mContext).load(bigimg_image).into(videoJPBigimg.ivThumb);
         OkHttpUtils.getInstance().get(url + bigimg, null, new MyNetWorkCallback<BigImgBean>() {
             @Override
             public void onSuccess(BigImgBean bigImgBean) {
@@ -62,6 +69,8 @@ public class BigImgHomeActivity extends AppCompatActivity {
                 image = bigImgBean.getVideo().getChapters().get(0).getImage();
                 url1 = bigImgBean.getVideo().getChapters().get(0).getUrl();
                 videoJPBigimg.setUp(url1, title);
+//                Log.e("TAG",image);
+
             }
 
             @Override
@@ -69,6 +78,7 @@ public class BigImgHomeActivity extends AppCompatActivity {
 
             }
         });
+
 
         bigimgShareImg.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -3,6 +3,7 @@ package co.com.newpandatv.view.activity.homeactivity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.umeng.qq.handler.a;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
@@ -21,12 +24,18 @@ import co.com.newpandatv.R;
 import co.com.newpandatv.app.App;
 import co.com.newpandatv.config.UMengUtls;
 import co.com.newpandatv.config.UrlsUtils;
+import co.com.newpandatv.dao.DaoMaster;
+import co.com.newpandatv.dao.DaoSession;
+import co.com.newpandatv.dao.DaoUtil;
+import co.com.newpandatv.dao.SQLBeans;
+import co.com.newpandatv.dao.SQLBeansDao;
 import co.com.newpandatv.model.entity.home_video_bean.AreaBean;
 import co.com.newpandatv.net.OkHttpUtils;
 import co.com.newpandatv.net.callback.MyNetWorkCallback;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 import static co.com.newpandatv.view.activity.VideoActivity.urls;
+import static com.umeng.qq.handler.a.r;
 
 public class AreaHomeActivity extends AppCompatActivity {
 
@@ -44,6 +53,8 @@ public class AreaHomeActivity extends AppCompatActivity {
     private String url1;
 
     int VIDEO=0;
+    private String area_image;
+    private String area;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +66,8 @@ public class AreaHomeActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        String area = intent.getStringExtra("area");
+        area = intent.getStringExtra("area");
+        area_image = intent.getStringExtra("area_image");
         OkHttpUtils.getInstance().get(url + area, null, new MyNetWorkCallback<AreaBean>() {
             @Override
             public void onSuccess(AreaBean areaBean) {
@@ -64,6 +76,7 @@ public class AreaHomeActivity extends AppCompatActivity {
                 url1 = areaBean.getVideo().getChapters().get(0).getUrl();
                 videoJPArea.setUp(url1, title);
                 videoJPArea.onBufferingUpdate(5);
+                Glide.with(App.mContext).load(area_image).into(videoJPArea.ivThumb);
 
             }
 

@@ -11,6 +11,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
@@ -26,6 +27,7 @@ import co.com.newpandatv.model.entity.home_video_bean.PandaeyeBean;
 import co.com.newpandatv.net.OkHttpUtils;
 import co.com.newpandatv.net.callback.MyNetWorkCallback;
 import co.com.newpandatv.view.activity.VideoActivity;
+import fm.jiecao.jcvideoplayer_lib.JCBuriedPoint;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 import static co.com.newpandatv.R.id.collectionlImg;
@@ -70,7 +72,8 @@ public class VideoLiuActivity extends AppCompatActivity {
                 title = pandaeyeBean.getTitle();
                 image = pandaeyeBean.getVideo().getChapters().get(0).getImage();
                 videoJPPandaeye.setUp(url1, title);
-//                boolean isFullscreenFromNormal = videoJPPandaeye.isFullscreenFromNormal;
+
+//               Glide.with(App.mContext).load(image).into(videoJPPandaeye.ivThumb);
             }
 
             @Override
@@ -138,6 +141,7 @@ public class VideoLiuActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+
         JCVideoPlayer.releaseAllVideos();
     }
 }

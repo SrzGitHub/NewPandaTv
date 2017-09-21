@@ -34,12 +34,12 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".view.activity.TwoActivity"
-            android:launchMode="singleTask" />
+        <activity android:name=".view.activity.TwoActivity"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".view.activity.VideoActivity"
             android:screenOrientation="landscape" />
@@ -80,23 +80,27 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".view.activity.SQLActivity" />
-        <activity android:name=".view.activity.SetUpActivity" />
-        <activity android:name=".shaer.AutoActivity" />
-        <activity android:name=".shaer.InfoActivity" />
-        <activity android:name=".shaer.UserActivity" />
-        <activity
-            android:name=".view.activity.homeactivity.VideoLiuActivity"
-            android:screenOrientation="landscape" />
-        <activity android:name=".view.activity.homeactivity.HomeWebActivity" />
-        <activity
-            android:name=".view.activity.homeactivity.AreaHomeActivity"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".view.activity.homeactivity.ListHomeActivity"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".view.activity.homeactivity.BigImgHomeActivity"
-            android:screenOrientation="landscape" />
+        <activity android:name=".view.activity.SetUpActivity"></activity>
+
+    <activity android:name=".shaer.AutoActivity"/>
+        <activity android:name=".shaer.InfoActivity"/>
+        <activity android:name=".shaer.UserActivity"/>
+        <activity android:name=".view.activity.homeactivity.VideoLiuActivity"
+            android:screenOrientation="landscape"
+
+            />
+        <activity android:name=".view.activity.homeactivity.HomeWebActivity"
+            />
+        <activity android:name=".view.activity.homeactivity.AreaHomeActivity"
+            android:screenOrientation="landscape"
+            />
+        <activity android:name=".view.activity.homeactivity.ListHomeActivity"
+            android:screenOrientation="landscape"
+            />
+        <activity android:name=".view.activity.homeactivity.BigImgHomeActivity"
+            android:screenOrientation="landscape"
+            ></activity>
+
         <activity android:name=".view.activity.PDBCActivity" />
         <activity android:name=".view.activity.PDBCVedioActivity" />
         <activity android:name=".view.activity.setup.GYActivity" />

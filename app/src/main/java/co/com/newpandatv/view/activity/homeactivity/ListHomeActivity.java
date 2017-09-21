@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
@@ -54,6 +55,7 @@ int VIDEO=0;
 
         Intent intent = getIntent();
         String list = intent.getStringExtra("list");
+        final String list_image = intent.getStringExtra("list_image");
         OkHttpUtils.getInstance().get(url + list, null, new MyNetWorkCallback<ListBean>() {
             @Override
             public void onSuccess(ListBean listBean) {
@@ -61,6 +63,7 @@ int VIDEO=0;
                 image = listBean.getVideo().getChapters().get(0).getImage();
                 url1 = listBean.getVideo().getChapters().get(0).getUrl();
                 videoJPList.setUp(url1, title);
+                Glide.with(App.mContext).load(list_image).into(videoJPList.ivThumb);
             }
 
             @Override

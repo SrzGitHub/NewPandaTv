@@ -32,6 +32,7 @@ import co.com.newpandatv.view.activity.homeactivity.AreaHomeActivity;
 import co.com.newpandatv.view.activity.homeactivity.BigImgHomeActivity;
 import co.com.newpandatv.view.activity.homeactivity.HomeWebActivity;
 import co.com.newpandatv.view.activity.homeactivity.ListHomeActivity;
+import co.com.newpandatv.view.activity.homeactivity.PandaliveActivity;
 import co.com.newpandatv.view.activity.homeactivity.VideoLiuActivity;
 
 /**
@@ -134,6 +135,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
                     }else {
                         Intent intent=new Intent(context, BigImgHomeActivity.class);
                         intent.putExtra("bigimg",bigImg.get(position).getPid());
+                        intent.putExtra("bigimg_image",bigImg.get(position).getImage());
                         context.startActivity(intent);
                     }
                 }
@@ -160,6 +162,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     Intent intent=new Intent(context, VideoLiuActivity.class);
                     intent.putExtra("pandaeye",pandaeye.getItems().get(0).getPid());
+                    intent.putExtra("pandaeye_image",pandaeye.getItems().get(0).getUrl());
                     context.startActivity(intent);
                 }
             });
@@ -174,7 +177,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
         }else if (itemViewType==2){
             ViewHolder3 holder3= (ViewHolder3) holder;
-            PandaLiveLiuBean.DataBean.PandaliveBean pandalive = dataBean.getPandalive();
+            final PandaLiveLiuBean.DataBean.PandaliveBean pandalive = dataBean.getPandalive();
             holder3.text_three.setText(pandalive.getTitle());
             List<PandaLiveLiuBean.DataBean.PandaliveBean.ListBeanX> lista = pandalive.getList();
             MyGlideAdapter myGlideAdapter = new MyGlideAdapter(context, lista);
@@ -182,9 +185,16 @@ public class HomeAdapter extends RecyclerView.Adapter {
             holder3.gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Toast.makeText(context, "直播结束1++++"+i, Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(context, PandaliveActivity.class);
+                    intent.putExtra("chinalivename",pandalive.getList().get(i).getTitle());
+                    intent.putExtra("pandalive",pandalive.getList().get(i).getId());
+                    intent.putExtra("pandalive_image",pandalive.getList().get(i).getImage());
+                    context.startActivity(intent);
                 }
             });
+            /**
+             * http://vdn.live.cntv.cn/api2/live.do?channel=pa://cctv_p2p_hdxiongmao06&amp;client=androidapp
+             */
 
         }else if(itemViewType==3){
             ViewHolder4 holder4= (ViewHolder4) holder;
@@ -202,6 +212,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
                 public void onItemClick(AdapterView<?> parent, View view, int positionx, long id) {
                     Intent intent=new Intent(context, AreaHomeActivity.class);
                     intent.putExtra("area",listscroll.get(positionx).getPid());
+                    intent.putExtra("area_image",listscroll.get(positionx).getImage());
                     context.startActivity(intent);
                 }
             });
@@ -232,20 +243,25 @@ public class HomeAdapter extends RecyclerView.Adapter {
                 public void onItemClick(AdapterView<?> parent, View view, int positionx, long id) {
                     Intent intent=new Intent(context, ListHomeActivity.class);
                     intent.putExtra("list",list_billowingvideoBean.get(positionx).getPid());
+                    intent.putExtra("list_image",list_billowingvideoBean.get(positionx).getImage());
                     context.startActivity(intent);
                 }
             });
 
         }else if(itemViewType==5){
             ViewHolder6 holder6= (ViewHolder6) holder;
-            PandaLiveLiuBean.DataBean.ChinaliveBean chinalive = dataBean.getChinalive();
+            final PandaLiveLiuBean.DataBean.ChinaliveBean chinalive = dataBean.getChinalive();
             holder6.text_six.setText(chinalive.getTitle());
             List<PandaLiveLiuBean.DataBean.ChinaliveBean.ListBean> list6 = chinalive.getList();
             holder6.gridView_six.setAdapter(new MyGridAdapter3(context,list6));
             holder6.gridView_six.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Toast.makeText(context, "直播结束2++++"+i, Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(context, PandaliveActivity.class);
+                    intent.putExtra("chinalivename",chinalive.getList().get(i).getTitle());
+                    intent.putExtra("pandalive",chinalive.getList().get(i).getId());
+                    intent.putExtra("pandalive_image",chinalive.getList().get(i).getImage());
+                    context.startActivity(intent);
                 }
             });
         }
