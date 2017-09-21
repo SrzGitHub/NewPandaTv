@@ -129,7 +129,7 @@ public class PandaBroadcast extends BaseFragment implements PDBCContract.View {
             imageurlll = pdbcBean.getData().getBigImg().get(0).getImage();
             view = LayoutInflater.from(App.mContext).inflate(R.layout.head_image, null);
             image = view.findViewById(R.id.head_image);
-            Glide.with(App.context).load(imageurlll).into(image);
+            Glide.with(App.mContext).load(imageurlll).into(image);
             listview.addHeaderView(view);
         } else {
             imageurlll = null;
