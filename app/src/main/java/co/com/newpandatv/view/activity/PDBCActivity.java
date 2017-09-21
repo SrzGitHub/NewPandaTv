@@ -39,7 +39,7 @@ import co.com.newpandatv.module.pandabroadcast.vedio.PDBCInfoContract;
 import co.com.newpandatv.net.OkHttpUtils;
 import co.com.newpandatv.net.callback.MyNetWorkCallback;
 
-public class PDBCActivity extends BaseActivity {
+public class PDBCActivity extends BaseActivity  {
 
 
     PDBCInfoContract.Presenter presenter;
@@ -55,6 +55,11 @@ public class PDBCActivity extends BaseActivity {
     CheckBox imageShare;
     private Handler handler;
     public static String id;
+    private SQLiteDatabase w;
+    private DaoMaster daoMaster;
+    private DaoSession daoSession;
+    private SQLBeansDao sqlBeansDao;
+    private SQLBeans sqlBeans;
 
     @Override
     protected int getLayoutId() {
@@ -65,7 +70,7 @@ public class PDBCActivity extends BaseActivity {
     @Override
     protected void initView() {
         ButterKnife.bind(this);
-        w = DaoUtil.getIn(App.getContext()).getW();
+        w = DaoUtil.getIn(App.mContext).getW();
         daoMaster = new DaoMaster(w);
         daoSession = daoMaster.newSession();
         sqlBeansDao = daoSession.getSQLBeansDao();

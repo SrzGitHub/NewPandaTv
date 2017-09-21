@@ -69,8 +69,6 @@ public class WonderfulMoment extends BaseFragment implements WonderfulMomentCont
     protected void loadData() {
         pandaLiveList = new ArrayList<>();
 
-        dialog = new ProgressDialog(App.context);
-        dialog.setMessage("正在加载");
 
         presenter.start();
 
@@ -124,13 +122,11 @@ public class WonderfulMoment extends BaseFragment implements WonderfulMomentCont
     @Override
     public void showProgressDialog() {
 
-        dialog.show();
 
     }
 
     @Override
     public void dismissDialog() {
-        dialog.dismiss();
     }
 
     @Override
