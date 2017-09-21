@@ -73,7 +73,7 @@ public class OkHttpUtils implements IHttp {
                     @Override
                     public void run() {
                         //执行在主线程
-                        callback.onError(404,e.getMessage().toString());
+                         callback.onError(404,e.getMessage().toString());
                     }
                 });
 

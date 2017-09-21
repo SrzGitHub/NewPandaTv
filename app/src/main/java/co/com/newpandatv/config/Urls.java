@@ -21,5 +21,5 @@ public class Urls {
 //    http://api.cntv.cn/article/contentinfo?id=ARTIRZA94zBmXIioIreYt1jR170914&serviceId=panda
     public static String PDBCINFOURL = PDBCINFOBASEURL + PDBCActivity.id + "&serviceId=panda";
 
-
+//http://api.cntv.cn/apicommon/index?path=iphoneInterface/general/getArticleAndVideoListInfo.json&primary_id=PAGE1422435191506336&serviceId=panda&pageSize=6&page=2
 }

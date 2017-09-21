@@ -1,16 +1,19 @@
-package app.demo.view.fragment;
+package co.com.newpandatv.view.fragment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +27,8 @@ import co.com.newpandatv.model.entity.PandaBroadCastBean;
 import co.com.newpandatv.model.entity.PandaBroadcastInfoBean;
 import co.com.newpandatv.module.pandabroadcast.PDBCContract;
 import co.com.newpandatv.module.pandabroadcast.PDBCPresenter;
+import co.com.newpandatv.net.OkHttpUtils;
+import co.com.newpandatv.net.callback.MyNetWorkCallback;
 import co.com.newpandatv.view.activity.PDBCActivity;
 import co.com.newpandatv.view.activity.PDBCVedioActivity;
 
@@ -42,8 +47,10 @@ public class PandaBroadcast extends BaseFragment implements PDBCContract.View {
     SmartRefreshLayout refreshLayout;
     private ProgressDialog dialog;
     private ImageView image;
-    private List<PandaBroadCastBean.DataBean.BigImgBean> imageurl = new ArrayList<PandaBroadCastBean.DataBean.BigImgBean>();
     private MyAdapters adapter;
+    String imageurlll = null;
+    private ArrayList<PandaBroadcastInfoBean.ListBean> list;
+    View view;
 
     @Override
     protected int getLayoutId() {
@@ -58,22 +65,37 @@ public class PandaBroadcast extends BaseFragment implements PDBCContract.View {
 
     @Override
     protected void loadData() {
+        refreshLayout.setEnableLoadmore(true);
+        refreshLayout.setLoadmoreFinished(false);
+        refreshLayout.setEnableLoadmoreWhenContentNotFull(true);
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                presenter.start();
+                refreshlayout.finishRefresh();
+            }
+        });
+        refreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                String path = "http://api.cntv.cn/apicommon/index?path=iphoneInterface/general/getArticleAndVideoListInfo.json&primary_id=PAGE1422435191506336&serviceId=panda&pageSize=6&page=2";
+                OkHttpUtils.getInstance().get(path, null, new MyNetWorkCallback<PandaBroadcastInfoBean>() {
+                    @Override
+                    public void onSuccess(PandaBroadcastInfoBean pandaBroadcastInfoBean) {
+                        List<PandaBroadcastInfoBean.ListBean> loadlist = pandaBroadcastInfoBean.getList();
+                        list.addAll(loadlist);
+                        adapter.notifyDataSetChanged();
+                    }
 
-//        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
-//            @Override
-//            public void onRefresh(RefreshLayout refreshlayout) {
-//                refreshlayout.finishRefresh(2000);
-//            }
-//        });
-//        refreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
-//            @Override
-//            public void onLoadmore(RefreshLayout refreshlayout) {
-//                refreshlayout.finishLoadmore(2000);
-//            }
-//        });
-//
-//
-//        refreshLayout.setRefreshFooter(new BallPulseFooter(App.context).setSpinnerStyle(SpinnerStyle.Scale));
+                    @Override
+                    public void onError(int errorCode, String errorMsg) {
+
+                    }
+                });
+
+                refreshlayout.finishLoadmore();
+            }
+        });
 
         presenter = new PDBCPresenter(this);
         presenter.start();
@@ -98,30 +120,34 @@ public class PandaBroadcast extends BaseFragment implements PDBCContract.View {
 
     @Override
     public void dismissDialog() {
-
+        dialog.dismiss();
     }
 
     @Override
-    public void setResult(PandaBroadCastBean pdbcBean) {
-        showProgressDialog();
-        List<PandaBroadCastBean.DataBean.BigImgBean> bigImg = pdbcBean.getData().getBigImg();
-        imageurl.addAll(bigImg);
-        View view = LayoutInflater.from(App.context).inflate(R.layout.head_image, null);
-        image = (ImageView) view.findViewById(R.id.head_image);
-        Log.e("TAG", imageurl.toString());
-        final String image1 = imageurl.get(0).getImage();
-        Log.e("TAG", image1);
-        Glide.with(App.context).load(image1).into(image);
-        listview.addHeaderView(view);
-        dialog.dismiss();
+    public void setResult(final PandaBroadCastBean pdbcBean) {
+
+
+        if (imageurlll == null) {
+            imageurlll = pdbcBean.getData().getBigImg().get(0).getImage();
+            view = LayoutInflater.from(App.context).inflate(R.layout.head_image, null);
+            image = view.findViewById(R.id.head_image);
+            Glide.with(App.context).load(imageurlll).into(image);
+            listview.addHeaderView(view);
+        } else {
+            imageurlll = null;
+            imageurlll = pdbcBean.getData().getBigImg().get(0).getImage();
+            Glide.with(App.context).load(imageurlll).into(image);
+            listview.removeHeaderView(view);
+            listview.addHeaderView(view);
+        }
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(App.context, PDBCVedioActivity.class);
-                intent.putExtra("url1", imageurl.get(0).getUrl());
-                intent.putExtra("title", imageurl.get(0).getTitle());
-//                intent.putExtra("imageurl",image1);
-                intent.putExtra("id1", imageurl.get(0).getId());
+                intent.putExtra("url1", pdbcBean.getData().getBigImg().get(0).getUrl());
+                intent.putExtra("title", pdbcBean.getData().getBigImg().get(0).getTitle());
+                intent.putExtra("id1", pdbcBean.getData().getBigImg().get(0).getId());
+                intent.putExtra("imageurl", pdbcBean.getData().getBigImg().get(0).getImage());
                 startActivity(intent);
             }
         });
@@ -134,96 +160,26 @@ public class PandaBroadcast extends BaseFragment implements PDBCContract.View {
 
     @Override
     public void setInfo(PandaBroadcastInfoBean pdbcInfoBean) {
-//        setResult();
-        List<PandaBroadcastInfoBean.ListBean> list1 = pdbcInfoBean.getList();
-        final List<PandaBroadcastInfoBean.ListBean> list = new ArrayList<PandaBroadcastInfoBean.ListBean>();
-
-        list.addAll(list1);
-        adapter = new MyAdapters(App.context, list);
-
-        listview.setAdapter(adapter);
-
-
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(App.context, PDBCActivity.class);
-                PandaBroadcastInfoBean.ListBean listBean = list.get(i - 1);
-                intent.putExtra("list", listBean);
-                startActivity(intent);
-            }
-        });
-
-
-    }
-
-    @Override
-    public void setFootInfo(PandaBroadcastInfoBean pdbcInfoBean) {
-        List<PandaBroadcastInfoBean.ListBean> list2 = pdbcInfoBean.getList();
-        List<PandaBroadcastInfoBean.ListBean> list = new ArrayList<PandaBroadcastInfoBean.ListBean>();
-
-        list.addAll(list2);
-        View view = LayoutInflater.from(App.context).inflate(R.layout.foot_view, null);
-        ListView lv = (ListView) view.findViewById(R.id.list_foot);
-        final MyAdapters adapter = new MyAdapters(App.context, list);
-        lv.setAdapter(adapter);
-
-//        listview.setOnScrollListener(new AbsListView.OnScrollListener() {
-//            public int visibleLastIndex;
-//            public int visibleItemCount;
-//            @Override
-//            public void onScrollStateChanged(AbsListView absListView, int i) {
-//                int itemsLastIndex = adapter.getCount() - 1;    //数据集最后一项的索引
-//                int lastIndex = itemsLastIndex + 1;             //加上底部的loadMoreView项
-//                if (!isload&&scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && visibleLastIndex == lastIndex) {
-//                    //如果是自动加载,可以在这里放置异步加载数据的代码
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            List<String> moredata = loadmoreData();
-//                            data.addAll(moredata);
-//                            adapter.notifyDataSetChanged(); //数据集变化后,通知adapter
-////                                     loadMoreBtn.setText("加载更多");    //恢复按钮文字
-//                            isload=false;
-//                        }
-//                    }, 4000);
-//                }
-//            }
-
-//            @Override
-//            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
-//                this.visibleItemCount = visibleItemCount;
-//                visibleLastIndex = firstVisibleItem + visibleItemCount - 1;
-//
-//            }
-//        });
-
-//        newList.setLoadMoreListener(new LoadMoreListener() {
-//            @Override
-//            public void onLoadMore() {
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//
-//                        if (page < 30) {
-//                            page++;
-//                            setGets();
-//                            xWenAdapter.notifyDataSetChanged();
-//                            //设置loading完成
-//                            newList.loadMoreComplete();
-//                        } else {
-//                            //设置加载到底
-//                            newList.loadMoreEnd();
-//                        }
-//
-//                    }
-//                },1500);
-//            }
-//        });
-
-
-
-        listview.addHeaderView(view);
+        if (list == null) {
+            list = (ArrayList<PandaBroadcastInfoBean.ListBean>) pdbcInfoBean.getList();
+            adapter = new MyAdapters(App.context, list);
+            listview.setAdapter(adapter);
+            listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent intent = new Intent(App.context, PDBCActivity.class);
+                    PandaBroadcastInfoBean.ListBean listBean = list.get(i - 1);
+                    intent.putExtra("list", listBean);
+                    startActivity(intent);
+                }
+            });
+            Toast.makeText(getActivity(), "网络请求成功啦", Toast.LENGTH_SHORT).show();
+        } else {
+            list.clear();
+            list.addAll(pdbcInfoBean.getList());
+            adapter.notifyDataSetChanged();
+            Toast.makeText(getActivity(), "下拉刷新成功啦", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -231,5 +187,7 @@ public class PandaBroadcast extends BaseFragment implements PDBCContract.View {
         super.onStop();
 
     }
+
+
 }
 

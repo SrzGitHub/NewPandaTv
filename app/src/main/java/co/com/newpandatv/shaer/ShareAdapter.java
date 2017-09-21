@@ -39,18 +39,22 @@ public class ShareAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView ==null){
-            convertView =  LayoutInflater.from(context).inflate(R.layout.app_shareadapter, null);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.app_shareadapter, null);
         }
         ImageView img = (ImageView) convertView.findViewById(R.id.adapter_image);
-        img.setImageResource(ResContainer.getResourceId(context,"drawable",list.get(position).mIcon));
-        TextView tv = (TextView)convertView.findViewById(R.id.name);
-        tv.setText(ResContainer.getResourceId(context,"string",list.get(position).mShowWord));
-        if (position == list.size()-1){
+        img.setImageResource(ResContainer.getResourceId(context, "drawable", list.get(position).mIcon));
+        TextView tv = (TextView) convertView.findViewById(R.id.name);
+        tv.setText(ResContainer.getResourceId(context, "string", list.get(position).mShowWord));
+        if (position == list.size() - 1) {
             convertView.findViewById(R.id.divider).setVisibility(View.GONE);
-        }else {
+        } else {
             convertView.findViewById(R.id.divider).setVisibility(View.VISIBLE);
         }
-        return convertView;
+        return  convertView;
     }
+
+
+
+
 }

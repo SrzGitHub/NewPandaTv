@@ -15,5 +15,5 @@ public interface IPDBCModel extends BaseModel {
 
     void getPDNC(MyNetWorkCallback<PandaBroadCastBean> callback);
     void getPDBCinfo(MyNetWorkCallback<PandaBroadcastInfoBean> callback);
-    void getPDBCFootInfo(MyNetWorkCallback<PandaBroadcastInfoBean> callback);
+
 }

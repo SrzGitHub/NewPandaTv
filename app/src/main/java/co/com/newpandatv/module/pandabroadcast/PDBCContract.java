@@ -19,7 +19,6 @@ public interface PDBCContract {
         void setResult(PandaBroadCastBean pdbcBean);
         void showMessage(String msg);
         void setInfo(PandaBroadcastInfoBean pdbcInfoBean);
-        void setFootInfo(PandaBroadcastInfoBean pdbcInfoBean);
     }
 
     interface Presenter extends BasePresenter {

@@ -25,15 +25,18 @@ public class PDBCPresenter implements PDBCContract.Presenter {
 
     @Override
     public void start() {
+        homeview.showProgressDialog();
         ipdbcModel.getPDNC(new MyNetWorkCallback<PandaBroadCastBean>() {
             @Override
             public void onSuccess(PandaBroadCastBean pandaBroadCastBean) {
                 homeview.setResult(pandaBroadCastBean);
+                homeview.dismissDialog();
             }
 
             @Override
             public void onError(int errorCode, String errorMsg) {
                 homeview.showMessage(errorMsg);
+                homeview.dismissDialog();
             }
         });
 
@@ -41,25 +44,17 @@ public class PDBCPresenter implements PDBCContract.Presenter {
             @Override
             public void onSuccess(PandaBroadcastInfoBean pandaBroadcastInfoBean) {
                 homeview.setInfo(pandaBroadcastInfoBean);
+                homeview.dismissDialog();
             }
 
             @Override
             public void onError(int errorCode, String errorMsg) {
                 homeview.showMessage(errorMsg);
+                homeview.dismissDialog();
             }
         });
 
-        ipdbcModel.getPDBCFootInfo(new MyNetWorkCallback<PandaBroadcastInfoBean>() {
-            @Override
-            public void onSuccess(PandaBroadcastInfoBean pandaBroadcastInfoBean) {
-                homeview.setFootInfo(pandaBroadcastInfoBean);
-            }
-
-            @Override
-            public void onError(int errorCode, String errorMsg) {
-            homeview.showMessage(errorMsg);
-            }
-        });
-
+//
     }
+
 }

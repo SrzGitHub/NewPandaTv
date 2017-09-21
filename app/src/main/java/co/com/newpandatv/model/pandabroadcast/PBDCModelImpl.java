@@ -24,8 +24,5 @@ public class PBDCModelImpl implements IPDBCModel {
         iHttp.get(Urls.PANDABROADCASTINFO,null,callback);
     }
 
-    @Override
-    public void getPDBCFootInfo(MyNetWorkCallback<PandaBroadcastInfoBean> callback) {
-        iHttp.get(Urls.PANDABROADCASTINFO,null,callback);
-    }
+
 }

@@ -100,7 +100,7 @@ public class BillowingVideo extends BaseFragment implements BilowingVideoContrac
 
         pid = billowing.getBigImg().get(0).getPid();
         image = billowing.getBigImg().get(0).getImage();
-        Glide.with(App.context).load(image).fitCenter().into(addImg);
+        Glide.with(App.mContext).load(image).fitCenter().into(addImg);
         addTitle.setText(billowing.getBigImg().get(0).getTitle());
 
         //一张图片的
