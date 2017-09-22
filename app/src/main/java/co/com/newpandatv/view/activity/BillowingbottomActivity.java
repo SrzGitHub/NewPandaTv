@@ -24,6 +24,7 @@ import co.com.newpandatv.adapter.BillowingbottomAdapter;
 import co.com.newpandatv.app.App;
 import co.com.newpandatv.base.BaseActivity;
 import co.com.newpandatv.config.UMengUtls;
+import co.com.newpandatv.model.entity.BillowBean;
 import co.com.newpandatv.model.entity.BillowingItemBean;
 import co.com.newpandatv.module.bilowing.BillowingbottomContract;
 import co.com.newpandatv.module.bilowing.BillowingbottomPresenter;
@@ -38,9 +39,10 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
 
 import static co.com.newpandatv.view.activity.VideoActivity.urls;
 
-public class BillowingbottomActivity extends BaseActivity implements BillowingbottomContract.View {
+public class BillowingbottomActivity extends BaseActivity  {
 
-    BillowingbottomContract.Presenter presenter;
+
+
     @BindView(R.id.fanhui_b)
     ImageView fanhuiB;
     @BindView(R.id.name_b)
@@ -71,22 +73,11 @@ public class BillowingbottomActivity extends BaseActivity implements Billowingbo
     private String urll;
     private String aaa;
 
+    private String mvid;
+
     int VIDEO = 0;
+    private String id;
 
-    @Override
-    public void setPresenter(BillowingbottomContract.Presenter presenter) {
-        this.presenter = presenter;
-    }
-
-    @Override
-    public void setResult(BillowingItemBean billowingItemBean) {
-
-    }
-
-    @Override
-    public void showMessage(String msg) {
-        Toast.makeText(this, "请求失败" + msg, Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     protected int getLayoutId() {
@@ -96,25 +87,50 @@ public class BillowingbottomActivity extends BaseActivity implements Billowingbo
     @Override
     protected void initView() {
 
-        new BillowingbottomPresenter(this);
-        presenter.start();
+//找到传递过来的这个id
+        id = getIntent().getStringExtra("id");
+        initDates();
 
-        //找到传递过来的这个id
-        String id = getIntent().getStringExtra("id");
+
         adapter = new BillowingbottomAdapter(this, R.layout.billowing_bottom_item, mList);
         mBillowingBottomListview.setAdapter(adapter);
         //点击条目播放视频
         mBillowingBottomListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //视频解析
+                OkHttpUtils.getInstance().get("http://115.182.35.91/api/getVideoInfoForCBox.do?pid=" + mvid, null,
+                        new MyNetWorkCallback<BillowBean>() {
+                            @Override
+                            public void onSuccess(BillowBean billowBean) {
 
-                //加载视频
-                jiecaoB.setUp("http://vod.cntv.lxdns.com/flash/mp4video62/TMS/2017/09/19/41f6ae4c38c7478baabcf0944e0f31d1_h264418000nero_aac32.mp4", name);
+                                List<BillowBean.VideoBean.ChaptersBean> chapters = billowBean.getVideo().getChapters();
+                                String myUrla = chapters.get(0).getUrl();
+
+                                jiecaoB.setUp(myUrla, name);
+                                Log.e("TAG", "厉害了" + myUrla);
+                            }
+
+                            @Override
+                            public void onError(int errorCode, String errorMsg) {
+
+                                Log.e("TAG", "3333333333333请求失败" + errorMsg);
+                            }
+                        });
+
             }
         });
 
+        //刷新加载
+        initDate();
+
+    }
+
+    private void initDates() {
         //进行请求
-        OkHttpUtils.getInstance().get("http://api.cntv.cn/video/videolistById?vsid=" + id + "&n=7&serviceId=panda&o=desc&of=time&p=", null, new MyNetWorkCallback<BillowingItemBean>() {
+        OkHttpUtils.getInstance().get("http://api.cntv.cn/video/videolistById?vsid=" + id + "&n=7&serviceId=panda&o=desc&of=time&p=" + App.PAGER, null, new MyNetWorkCallback<BillowingItemBean>() {
+
+
             @Override
             public void onSuccess(BillowingItemBean billowingItemBean) {
                 Log.e("TAG", "-------" + billowingItemBean.toString());
@@ -122,6 +138,8 @@ public class BillowingbottomActivity extends BaseActivity implements Billowingbo
 
                 //栏目介绍
                 desc = billowingItemBean.getVideoset().get_$0().getDesc();
+                //条目ID
+                mvid = billowingItemBean.getVideo().get(0).getVid();
                 //获取图片
                 img = billowingItemBean.getVideo().get(0).getImg();
                 //标题
@@ -138,65 +156,6 @@ public class BillowingbottomActivity extends BaseActivity implements Billowingbo
                 Log.e("TAG", "请求失败" + errorMsg);
             }
         });
-
-
-        //设置点击隐藏 收藏 分享
-        butImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (ABS == 0) {
-                    ABS = 1;
-                    textName.setText(desc);
-                    Log.e("ATG", textName.toString());
-                    textName.setVisibility(View.VISIBLE);
-                } else {
-                    ABS = 0;
-                    textName.setText("隐藏");
-                    Log.e("ATG", textName.toString());
-                    textName.setVisibility(View.GONE);
-                }
-            }
-        });
-
-        shoucangB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                switch (VIDEO) {
-                    case 0:
-                        VIDEO = 1;
-                        shoucangB.setImageResource(R.mipmap.collect_yes);
-                        Toast.makeText(BillowingbottomActivity.this, "收藏成功", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 1:
-                        VIDEO = 0;
-                        shoucangB.setImageResource(R.mipmap.collect_no);
-                        Toast.makeText(BillowingbottomActivity.this, "取消收藏", Toast.LENGTH_SHORT).show();
-                        break;
-                }
-            }
-        });
-
-        fenxiangB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                UMImage imgs = new UMImage(App.getContext(), img);
-                UMVideo video = new UMVideo(urls);
-                video.setTitle(name);//视频的标题
-                video.setThumb(imgs);//视频的缩略图
-                video.setDescription("PandaChannel");//视频的描述
-                new ShareAction(BillowingbottomActivity.this)
-                        .setPlatform(SHARE_MEDIA.QQ)//传入平台
-                        .withMedia(video)
-                        .setCallback(UMengUtls.shareListener)//回调监听器
-                        .share();
-            }
-        });
-
-        initDate();
-
     }
 
     private void initDate() {
@@ -213,7 +172,7 @@ public class BillowingbottomActivity extends BaseActivity implements Billowingbo
             public void onLoadMoreBegin(PtrFrameLayout frame) {
                 Log.e("TAG", "onLoadMoreBegin:开始 加载更多");
                 App.PAGER++;
-                presenter.start();
+             initDates();
                 ptrFrameBb.refreshComplete();
             }
 
@@ -222,7 +181,7 @@ public class BillowingbottomActivity extends BaseActivity implements Billowingbo
                 Log.e("TAG", "onLoadMoreBegin: 开始加载");
                 App.PAGER = 1;
                 mList.clear();
-                presenter.start();
+                initDates();
                 ptrFrameBb.refreshComplete();
             }
         });
@@ -244,8 +203,52 @@ public class BillowingbottomActivity extends BaseActivity implements Billowingbo
     }
 
 
-    @OnClick(R.id.fanhui_b)
-    public void onViewClicked() {
-        finish();
+    @OnClick({R.id.fanhui_b, R.id.butImg, R.id.shoucang_b, R.id.fenxiang_b})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.fanhui_b:
+                finish();
+                break;
+            case R.id.butImg:
+                if (ABS == 0) {
+                    ABS = 1;
+                    textName.setText(desc);
+                    Log.e("ATG", textName.toString());
+                    textName.setVisibility(View.VISIBLE);
+                } else {
+                    ABS = 0;
+                    textName.setText("隐藏");
+                    Log.e("ATG", textName.toString());
+                    textName.setVisibility(View.GONE);
+                }
+                break;
+            case R.id.shoucang_b:
+                switch (VIDEO) {
+                    case 0:
+                        VIDEO = 1;
+                        shoucangB.setImageResource(R.mipmap.collect_yes);
+                        Toast.makeText(BillowingbottomActivity.this, "收藏成功", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 1:
+                        VIDEO = 0;
+                        shoucangB.setImageResource(R.mipmap.collect_no);
+                        Toast.makeText(BillowingbottomActivity.this, "取消收藏", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                break;
+            case R.id.fenxiang_b:
+                UMImage imgs = new UMImage(App.getContext(), img);
+                UMVideo video = new UMVideo(urls);
+                video.setTitle(name);//视频的标题
+                video.setThumb(imgs);//视频的缩略图
+                video.setDescription("PandaChannel");//视频的描述
+                new ShareAction(BillowingbottomActivity.this)
+                        .setPlatform(SHARE_MEDIA.QQ)//传入平台
+                        .withMedia(video)
+                        .setCallback(UMengUtls.shareListener)//回调监听器
+                        .share();
+
+                break;
+        }
     }
 }

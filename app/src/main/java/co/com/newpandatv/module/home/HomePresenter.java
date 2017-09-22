@@ -20,8 +20,6 @@ public class HomePresenter implements HomeContract.Presenter {
     @Override
     public void start() {
 
-
-
         pandaLiveModel.getPadDaLive(new MyNetWorkCallback<PandaLiveLiuBean>() {
             @Override
             public void onSuccess(PandaLiveLiuBean pandaLiveLiuBean) {

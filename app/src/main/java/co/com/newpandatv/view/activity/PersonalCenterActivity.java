@@ -1,6 +1,7 @@
 package co.com.newpandatv.view.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -69,8 +70,11 @@ public class PersonalCenterActivity extends AppCompatActivity {
                     name = map.get(string);
                 }
 
-                Glide.with(PersonalCenterActivity.this).load(image_url).into(prPhp);
-                prName.setText(name);
+
+                    Glide.with(PersonalCenterActivity.this).load(image_url).into(prPhp);
+                    prName.setText(name);
+
+
             }
 
 
@@ -116,12 +120,10 @@ public class PersonalCenterActivity extends AppCompatActivity {
                    case 1:
                         USER= 0;
                        startActivity(new Intent(PersonalCenterActivity.this, UserActivity.class));
-
+                        finish();
                        break;
 
                }
-
-
                 break;
             case R.id.lishi:
                 Intent intent = new Intent(App.getContext(),SQLActivity.class);

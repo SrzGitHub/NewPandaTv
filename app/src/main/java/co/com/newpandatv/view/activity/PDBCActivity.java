@@ -42,7 +42,7 @@ import co.com.newpandatv.net.callback.MyNetWorkCallback;
 public class PDBCActivity extends BaseActivity  {
 
 
-    PDBCInfoContract.Presenter presenter;
+
     @BindView(R.id.text)
     TextView text;
     @BindView(R.id.title)

@@ -47,6 +47,7 @@ public class UserActivity extends AppCompatActivity {
                 Intent intent = new Intent(UserActivity.this, PersonalCenterActivity.class);
                 intent.putExtra("platforms", platforms.get(position).mPlatform);
                 startActivity(intent);
+                finish();
             }
         });
 

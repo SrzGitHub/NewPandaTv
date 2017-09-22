@@ -1,6 +1,7 @@
 package co.com.newpandatv.view.fragment.pandalive_fragment;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -38,6 +39,13 @@ public class GoodFragment extends Fragment {
     private int times = 0;
     TaiShanBean liveBeans;
    private String url;
+    @SuppressLint("ValidFragment")
+
+    public GoodFragment(){
+
+    }
+    @SuppressLint("ValidFragment")
+
     public GoodFragment(String url) {
         this.url=url;
     }
